@@ -68,6 +68,7 @@
             this.btnpengunjung.TabIndex = 3;
             this.btnpengunjung.Text = "PENGUNJUNG";
             this.btnpengunjung.UseVisualStyleBackColor = false;
+            this.btnpengunjung.Click += new System.EventHandler(this.btnpengunjung_Click);
             // 
             // btnadmin
             // 
