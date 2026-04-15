@@ -23,7 +23,35 @@ namespace KebunBinatangADO
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            try
+            {
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM Admin WHERE Username = @user AND Password = @pass";
+                SqlCommand cmd = new SqlCommand(query, conn);
 
+                cmd.Parameters.AddWithValue("@user", txtUsername.Text);
+                cmd.Parameters.AddWithValue("@pass", txtPassword.Text);
+
+                int result = (int)cmd.ExecuteScalar();
+
+                if (result > 0)
+                {
+                    MessageBox.Show("Login Berhasil!");
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Username atau Password salah!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Terjadi kesalahan: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         private void txtPassword_TextChanged(object sender, EventArgs e)
