@@ -23,7 +23,17 @@ namespace KebunBinatangADO.Forms
 
         private void btnadmin_Click(object sender, EventArgs e)
         {
+            try
+            {
+                conn.Open();
+                MessageBox.Show("Koneksi berhasil, membuka halaman Admin...");
 
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Koneksi gagal: " + ex.Message);
+            }
         }
 
         private void FormHome_Load(object sender, EventArgs e)
