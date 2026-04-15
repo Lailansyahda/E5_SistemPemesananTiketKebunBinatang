@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{417F751B-D7C7-4C13-892A-AEC15C9EFFB5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>KebunBinatangADO</RootNamespace>
+    <AssemblyName>KebunBinatangADO</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Forms\FormBookingPengunjung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormBookingPengunjung.Designer.cs">
+      <DependentUpon>FormBookingPengunjung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormDashboardAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormDashboardAdmin.Designer.cs">
+      <DependentUpon>FormDashboardAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormDataBooking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormDataBooking.Designer.cs">
+      <DependentUpon>FormDataBooking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormHome.Designer.cs">
+      <DependentUpon>FormHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormKelolaTiket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormKelolaTiket.Designer.cs">
+      <DependentUpon>FormKelolaTiket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormLaporan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormLaporan.Designer.cs">
+      <DependentUpon>FormLaporan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormLoginAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormLoginAdmin.Designer.cs">
+      <DependentUpon>FormLoginAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormLoginPengunjung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormLoginPengunjung.Designer.cs">
+      <DependentUpon>FormLoginPengunjung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormRegisterPengunjung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormRegisterPengunjung.Designer.cs">
+      <DependentUpon>FormRegisterPengunjung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormVerifikasi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormVerifikasi.Designer.cs">
+      <DependentUpon>FormVerifikasi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\FormBookingPengunjung.resx">
+      <DependentUpon>FormBookingPengunjung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormDashboardAdmin.resx">
+      <DependentUpon>FormDashboardAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormDataBooking.resx">
+      <DependentUpon>FormDataBooking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormHome.resx">
+      <DependentUpon>FormHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormKelolaTiket.resx">
+      <DependentUpon>FormKelolaTiket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormLaporan.resx">
+      <DependentUpon>FormLaporan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormLoginAdmin.resx">
+      <DependentUpon>FormLoginAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormLoginPengunjung.resx">
+      <DependentUpon>FormLoginPengunjung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormRegisterPengunjung.resx">
+      <DependentUpon>FormRegisterPengunjung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormVerifikasi.resx">
+      <DependentUpon>FormVerifikasi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
