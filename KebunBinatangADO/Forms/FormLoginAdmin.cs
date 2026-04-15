@@ -13,6 +13,9 @@ namespace KebunBinatangADO
 {
     public partial class FormLoginAdmin: Form
     {
+        string connString = "Data Source=LAPTOP-2V9KUAS1\\LAILANSYAHDA; Initial Catalog=DBKebunBinatangADO; Integrated Security=True";
+        SqlConnection conn;
+
         public FormLoginAdmin()
         {
             InitializeComponent();
