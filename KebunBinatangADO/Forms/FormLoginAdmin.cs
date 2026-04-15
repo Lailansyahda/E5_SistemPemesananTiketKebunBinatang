@@ -38,7 +38,7 @@ namespace KebunBinatangADO
 
         private void FormLoginAdmin_Load(object sender, EventArgs e)
         {
-
+            conn = new SqlConnection(connString);
         }
     }
 }
