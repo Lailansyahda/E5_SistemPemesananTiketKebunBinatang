@@ -31,7 +31,7 @@ namespace KebunBinatangADO.Forms
 
         private void FormHome_Load(object sender, EventArgs e)
         {
-
+            conn = new SqlConnection(connString);
         }
 
         private void btnpengunjung_Click(object sender, EventArgs e)
