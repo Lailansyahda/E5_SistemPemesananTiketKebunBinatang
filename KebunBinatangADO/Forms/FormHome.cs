@@ -36,7 +36,10 @@ namespace KebunBinatangADO.Forms
 
         private void btnpengunjung_Click(object sender, EventArgs e)
         {
-            
+            FormRegisterPengunjung regisPengunjung = new FormRegisterPengunjung();
+            regisPengunjung.Show();
+
+            this.Hide();
         }
     }
 }
