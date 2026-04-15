@@ -23,12 +23,42 @@ namespace KebunBinatangADO.Forms
 
         private void btnLoginPengunjung_Click(object sender, EventArgs e)
         {
+            try
+            {
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM Pengunjung WHERE Username = @user AND Password = @pass";
 
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@user", txtUsernamePengunjung.Text);
+                    cmd.Parameters.AddWithValue("@pass", txtPasswordPengunjung.Text);
+
+                    int result = (int)cmd.ExecuteScalar();
+
+                    if (result > 0)
+                    {
+                        MessageBox.Show("Login Berhasil! Selamat datang di Kebun Binatang.");
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Email atau Password salah!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Terjadi kesalahan: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         private void FormLoginPengunjung_Load(object sender, EventArgs e)
         {
-
+            conn = new SqlConnection(connString);
         }
     }
 }
