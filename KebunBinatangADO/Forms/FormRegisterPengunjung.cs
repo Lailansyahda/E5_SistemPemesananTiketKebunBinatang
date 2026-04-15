@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,11 @@ namespace KebunBinatangADO.Forms
         }
 
         private void btnRegis_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormRegisterPengunjung_Load(object sender, EventArgs e)
         {
 
         }

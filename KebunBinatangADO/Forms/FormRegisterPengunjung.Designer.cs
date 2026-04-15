@@ -187,6 +187,7 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "FormRegisterPengunjung";
             this.Text = "FormRegisterPengunjung";
+            this.Load += new System.EventHandler(this.FormRegisterPengunjung_Load);
             this.Click += new System.EventHandler(this.btnRegis_Click);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
