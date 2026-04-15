@@ -13,6 +13,9 @@ namespace KebunBinatangADO.Forms
 {
     public partial class FormHome: Form
     {
+        string connString = "Data Source=LAPTOP-2V9KUAS1\\LAILANSYAHDA; Initial Catalog=DBKebunBinatangADO; Integrated Security=True";
+        SqlConnection conn;
+
         public FormHome()
         {
             InitializeComponent();
