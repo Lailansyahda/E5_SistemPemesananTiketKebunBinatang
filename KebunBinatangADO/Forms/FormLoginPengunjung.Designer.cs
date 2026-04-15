@@ -134,6 +134,7 @@
             this.Controls.Add(this.picLogo);
             this.Name = "FormLoginPengunjung";
             this.Text = "FormLoginPengunjung";
+            this.Load += new System.EventHandler(this.FormLoginPengunjung_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
