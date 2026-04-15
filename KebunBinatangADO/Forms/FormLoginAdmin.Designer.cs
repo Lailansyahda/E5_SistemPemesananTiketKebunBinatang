@@ -149,6 +149,7 @@
             this.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.Name = "FormLoginAdmin";
             this.Text = "FormLogin";
+            this.Load += new System.EventHandler(this.FormLoginAdmin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
