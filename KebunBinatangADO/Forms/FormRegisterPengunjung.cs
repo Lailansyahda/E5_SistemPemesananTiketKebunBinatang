@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace KebunBinatangADO.Forms
 {
-    public partial class FormRegisterPengunjung: Form
+    public partial class FormRegisterPengunjung : Form
     {
         string connString = "Data Source=LAPTOP-2V9KUAS1\\LAILANSYAHDA; Initial Catalog=DBKebunBinatangADO; Integrated Security=True";
         SqlConnection conn;
@@ -23,7 +23,44 @@ namespace KebunBinatangADO.Forms
 
         private void btnRegis_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtUserRegis.Text) || string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                MessageBox.Show("Nama dan Email wajib diisi!");
+                return;
+            }
 
+            try
+            {
+                conn.Open();
+                string query = "INSERT INTO Pengunjung (Email, Username, Password) VALUES (@email, @user, @pass)";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@email", txtEmail.Text);
+                    cmd.Parameters.AddWithValue("@pass", txtPassRegis.Text);
+                    cmd.Parameters.AddWithValue("@user", txtUserRegis.Text);
+
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Registrasi Berhasil!");
+
+                    ClearForm();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Gagal registrasi: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        private void ClearForm()
+        {
+            txtEmail.Clear();
+            txtPassRegis.Clear();
+            txtUserRegis.Focus();
         }
 
         private void FormRegisterPengunjung_Load(object sender, EventArgs e)
