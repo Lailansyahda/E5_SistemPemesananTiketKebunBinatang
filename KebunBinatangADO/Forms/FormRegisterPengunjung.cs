@@ -67,5 +67,14 @@ namespace KebunBinatangADO.Forms
         {
             conn = new SqlConnection(connString);
         }
+
+        private void btnLoginRegis_Click(object sender, EventArgs e)
+        {
+            FormLoginPengunjung loginForm = new FormLoginPengunjung();
+
+            loginForm.Show();
+
+            this.Hide();
+        }
     }
 }

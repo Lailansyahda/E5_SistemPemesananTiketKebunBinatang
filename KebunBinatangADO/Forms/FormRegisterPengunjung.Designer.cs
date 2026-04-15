@@ -165,6 +165,7 @@
             this.btnLoginRegis.TabIndex = 14;
             this.btnLoginRegis.Text = "Login";
             this.btnLoginRegis.UseVisualStyleBackColor = true;
+            this.btnLoginRegis.Click += new System.EventHandler(this.btnLoginRegis_Click);
             // 
             // FormRegisterPengunjung
             // 
