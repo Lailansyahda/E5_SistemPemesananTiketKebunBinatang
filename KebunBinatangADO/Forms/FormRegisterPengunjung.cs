@@ -28,7 +28,7 @@ namespace KebunBinatangADO.Forms
 
         private void FormRegisterPengunjung_Load(object sender, EventArgs e)
         {
-
+            conn = new SqlConnection(connString);
         }
     }
 }
