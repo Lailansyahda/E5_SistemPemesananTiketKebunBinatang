@@ -140,6 +140,7 @@
             this.btnRegis.TabIndex = 12;
             this.btnRegis.Text = "REGISTRASI";
             this.btnRegis.UseVisualStyleBackColor = true;
+            this.btnRegis.Click += new System.EventHandler(this.btnRegis_Click);
             // 
             // contextMenuStrip1
             // 

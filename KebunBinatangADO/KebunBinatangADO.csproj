@@ -46,6 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBKebunBinatangADODataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBKebunBinatangADODataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormBookingPengunjung.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +152,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="DBKebunBinatangADODataSet.xsc">
+      <DependentUpon>DBKebunBinatangADODataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DBKebunBinatangADODataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DBKebunBinatangADODataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DBKebunBinatangADODataSet.xss">
+      <DependentUpon>DBKebunBinatangADODataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

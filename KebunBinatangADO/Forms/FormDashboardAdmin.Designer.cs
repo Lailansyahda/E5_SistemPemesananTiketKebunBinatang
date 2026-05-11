@@ -88,6 +88,7 @@
             this.btnVerifikasi.TabIndex = 3;
             this.btnVerifikasi.Text = "Verifikasi";
             this.btnVerifikasi.UseVisualStyleBackColor = false;
+            this.btnVerifikasi.Click += new System.EventHandler(this.btnVerfikasi_Click);
             // 
             // picLogo
             // 
@@ -141,6 +142,7 @@
             this.Controls.Add(this.btnKelolaTiket);
             this.Name = "FormDashboardAdmin";
             this.Text = "FormDashboardAdmin";
+            this.Load += new System.EventHandler(this.FormDashboardAdmin_Load);
             this.Click += new System.EventHandler(this.btnVerfikasi_Click);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);

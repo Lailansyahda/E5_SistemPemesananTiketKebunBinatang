@@ -113,7 +113,7 @@
             this.dgvDataBooking.ReadOnly = true;
             this.dgvDataBooking.Size = new System.Drawing.Size(582, 150);
             this.dgvDataBooking.TabIndex = 20;
-            this.dgvDataBooking.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDataBooking_CellClick);
+
             // 
             // btnBack
             // 

@@ -32,7 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpLaporan = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
             this.dgvLaporan = new System.Windows.Forms.DataGridView();
             this.btnBack = new System.Windows.Forms.Button();
@@ -73,13 +73,13 @@
             this.label2.TabIndex = 17;
             this.label2.Text = "Pilih Tanggal : ";
             // 
-            // dateTimePicker1
+            // dtpLaporan
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Rockwell", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(249, 122);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(237, 22);
-            this.dateTimePicker1.TabIndex = 18;
+            this.dtpLaporan.Font = new System.Drawing.Font("Rockwell", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpLaporan.Location = new System.Drawing.Point(249, 122);
+            this.dtpLaporan.Name = "dtpLaporan";
+            this.dtpLaporan.Size = new System.Drawing.Size(237, 22);
+            this.dtpLaporan.TabIndex = 18;
             // 
             // button1
             // 
@@ -92,6 +92,7 @@
             this.button1.TabIndex = 19;
             this.button1.Text = "Tampilkan Data";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.btnTampilLaporan_Click);
             // 
             // dgvLaporan
             // 
@@ -103,7 +104,6 @@
             this.dgvLaporan.ReadOnly = true;
             this.dgvLaporan.Size = new System.Drawing.Size(562, 150);
             this.dgvLaporan.TabIndex = 20;
-            this.dgvLaporan.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLaporan_CellClick);
             // 
             // btnBack
             // 
@@ -127,12 +127,13 @@
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.dgvLaporan);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dtpLaporan);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Name = "FormLaporan";
             this.Text = "FormLaporan";
+            this.Load += new System.EventHandler(this.FormLaporan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLaporan)).EndInit();
             this.ResumeLayout(false);
@@ -145,7 +146,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpLaporan;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dgvLaporan;
         private System.Windows.Forms.Button btnBack;

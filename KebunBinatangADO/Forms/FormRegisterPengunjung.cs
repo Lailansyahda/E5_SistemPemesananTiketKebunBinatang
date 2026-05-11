@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KebunBinatangADO.Forms
@@ -21,13 +15,32 @@ namespace KebunBinatangADO.Forms
             InitializeComponent();
         }
 
+        private bool IsValidInput()
+        {
+            if (string.IsNullOrWhiteSpace(txtUserRegis.Text) || string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrWhiteSpace(txtPassRegis.Text))
+            {
+                MessageBox.Show("Semua data wajib diisi!");
+                return false;
+            }
+
+            if (!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))
+            {
+                MessageBox.Show("Format email salah! Harus mengandung tanda @ dan titik (.)");
+                return false;
+            }
+
+            if (txtPassRegis.Text.Length < 6)
+            {
+                MessageBox.Show("Password minimal harus 6 karakter!");
+                return false;
+            }
+
+            return true;
+        }
+
         private void btnRegis_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtUserRegis.Text) || string.IsNullOrWhiteSpace(txtEmail.Text))
-            {
-                MessageBox.Show("Nama dan Email wajib diisi!");
-                return;
-            }
+            if (!IsValidInput()) return;
 
             try
             {
@@ -60,6 +73,7 @@ namespace KebunBinatangADO.Forms
         {
             txtEmail.Clear();
             txtPassRegis.Clear();
+            txtUserRegis.Clear();
             txtUserRegis.Focus();
         }
 
@@ -71,9 +85,7 @@ namespace KebunBinatangADO.Forms
         private void btnLoginRegis_Click(object sender, EventArgs e)
         {
             FormLoginPengunjung loginForm = new FormLoginPengunjung();
-
             loginForm.Show();
-
             this.Hide();
         }
     }

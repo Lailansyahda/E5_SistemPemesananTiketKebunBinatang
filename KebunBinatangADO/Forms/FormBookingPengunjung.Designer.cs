@@ -47,20 +47,20 @@
             this.numTiketPelajar = new System.Windows.Forms.NumericUpDown();
             this.numTiketDewasa = new System.Windows.Forms.NumericUpDown();
             this.lblTiketDewasa = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpBooking = new System.Windows.Forms.DateTimePicker();
             this.lblTanggal = new System.Windows.Forms.Label();
             this.grpBoxRingkasan = new System.Windows.Forms.GroupBox();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.txtTanggalKunjungan = new System.Windows.Forms.TextBox();
             this.txtStatusPembayaran = new System.Windows.Forms.TextBox();
             this.txtKodeBook = new System.Windows.Forms.TextBox();
             this.txtTotalHarga = new System.Windows.Forms.TextBox();
-            this.txtTotal = new System.Windows.Forms.TextBox();
+            this.txtDetailTiket = new System.Windows.Forms.TextBox();
             this.lblTanggalKunjungan = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblKodeBooking = new System.Windows.Forms.Label();
             this.lblTotalHarga = new System.Windows.Forms.Label();
             this.lblDetail = new System.Windows.Forms.Label();
-            this.btnLogout = new System.Windows.Forms.Button();
             this.grpBoxDataTiket.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numTiketAnak)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTiketPelajar)).BeginInit();
@@ -137,7 +137,7 @@
             this.grpBoxDataTiket.Controls.Add(this.lblNama);
             this.grpBoxDataTiket.Controls.Add(this.numTiketDewasa);
             this.grpBoxDataTiket.Controls.Add(this.lblTiketDewasa);
-            this.grpBoxDataTiket.Controls.Add(this.dateTimePicker1);
+            this.grpBoxDataTiket.Controls.Add(this.dtpBooking);
             this.grpBoxDataTiket.Controls.Add(this.lblTanggal);
             this.grpBoxDataTiket.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpBoxDataTiket.ForeColor = System.Drawing.Color.White;
@@ -250,12 +250,12 @@
             this.lblTiketDewasa.TabIndex = 2;
             this.lblTiketDewasa.Text = " Tiket Dewasa : ";
             // 
-            // dateTimePicker1
+            // dtpBooking
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(123, 17);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(248, 23);
-            this.dateTimePicker1.TabIndex = 1;
+            this.dtpBooking.Location = new System.Drawing.Point(123, 17);
+            this.dtpBooking.Name = "dtpBooking";
+            this.dtpBooking.Size = new System.Drawing.Size(248, 23);
+            this.dtpBooking.TabIndex = 1;
             // 
             // lblTanggal
             // 
@@ -274,7 +274,7 @@
             this.grpBoxRingkasan.Controls.Add(this.txtStatusPembayaran);
             this.grpBoxRingkasan.Controls.Add(this.txtKodeBook);
             this.grpBoxRingkasan.Controls.Add(this.txtTotalHarga);
-            this.grpBoxRingkasan.Controls.Add(this.txtTotal);
+            this.grpBoxRingkasan.Controls.Add(this.txtDetailTiket);
             this.grpBoxRingkasan.Controls.Add(this.lblTanggalKunjungan);
             this.grpBoxRingkasan.Controls.Add(this.lblStatus);
             this.grpBoxRingkasan.Controls.Add(this.lblKodeBooking);
@@ -288,6 +288,17 @@
             this.grpBoxRingkasan.TabIndex = 2;
             this.grpBoxRingkasan.TabStop = false;
             this.grpBoxRingkasan.Text = "Ringkasan Pemesanan";
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.BackColor = System.Drawing.Color.Sienna;
+            this.btnLogout.Location = new System.Drawing.Point(646, 143);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(90, 26);
+            this.btnLogout.TabIndex = 10;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // txtTanggalKunjungan
             // 
@@ -317,13 +328,13 @@
             this.txtTotalHarga.Size = new System.Drawing.Size(100, 23);
             this.txtTotalHarga.TabIndex = 6;
             // 
-            // txtTotal
+            // txtDetailTiket
             // 
-            this.txtTotal.Location = new System.Drawing.Point(124, 34);
-            this.txtTotal.Multiline = true;
-            this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Size = new System.Drawing.Size(195, 70);
-            this.txtTotal.TabIndex = 5;
+            this.txtDetailTiket.Location = new System.Drawing.Point(124, 34);
+            this.txtDetailTiket.Multiline = true;
+            this.txtDetailTiket.Name = "txtDetailTiket";
+            this.txtDetailTiket.Size = new System.Drawing.Size(195, 70);
+            this.txtDetailTiket.TabIndex = 5;
             // 
             // lblTanggalKunjungan
             // 
@@ -370,17 +381,6 @@
             this.lblDetail.TabIndex = 0;
             this.lblDetail.Text = "Detail Tiket : ";
             // 
-            // btnLogout
-            // 
-            this.btnLogout.BackColor = System.Drawing.Color.Sienna;
-            this.btnLogout.Location = new System.Drawing.Point(646, 143);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(90, 26);
-            this.btnLogout.TabIndex = 10;
-            this.btnLogout.Text = "Logout";
-            this.btnLogout.UseVisualStyleBackColor = false;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-            // 
             // FormBookingPengunjung
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -413,7 +413,7 @@
         private System.Windows.Forms.GroupBox grpBoxDataTiket;
         private System.Windows.Forms.Label lblTanggal;
         private System.Windows.Forms.Label lblTiketDewasa;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpBooking;
         private System.Windows.Forms.Label lblTiketAnak;
         private System.Windows.Forms.Label lblTiketPelajar;
         private System.Windows.Forms.NumericUpDown numTiketAnak;
@@ -428,7 +428,7 @@
         private System.Windows.Forms.Label lblTotalHarga;
         private System.Windows.Forms.Label lblDetail;
         private System.Windows.Forms.TextBox txtSisaKuota;
-        private System.Windows.Forms.TextBox txtTotal;
+        private System.Windows.Forms.TextBox txtDetailTiket;
         private System.Windows.Forms.TextBox txtTanggalKunjungan;
         private System.Windows.Forms.TextBox txtStatusPembayaran;
         private System.Windows.Forms.TextBox txtKodeBook;

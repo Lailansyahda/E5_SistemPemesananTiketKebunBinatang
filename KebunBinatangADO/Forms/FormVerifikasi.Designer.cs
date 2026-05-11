@@ -34,7 +34,7 @@
             this.lblPilihTanggalVerif = new System.Windows.Forms.Label();
             this.txtCariKode = new System.Windows.Forms.TextBox();
             this.btnTampildata = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnVerifikasi = new System.Windows.Forms.Button();
             this.dgvVerifikasi = new System.Windows.Forms.DataGridView();
             this.btnBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -92,18 +92,20 @@
             this.btnTampildata.TabIndex = 19;
             this.btnTampildata.Text = "Tampilkan Data";
             this.btnTampildata.UseVisualStyleBackColor = false;
+            this.btnTampildata.Click += new System.EventHandler(this.btnLoadData_Click);
             // 
-            // button1
+            // btnVerifikasi
             // 
-            this.button1.BackColor = System.Drawing.Color.SaddleBrown;
-            this.button1.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(619, 104);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 35);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "Verifikasi";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnVerifikasi.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnVerifikasi.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerifikasi.ForeColor = System.Drawing.Color.White;
+            this.btnVerifikasi.Location = new System.Drawing.Point(619, 104);
+            this.btnVerifikasi.Name = "btnVerifikasi";
+            this.btnVerifikasi.Size = new System.Drawing.Size(105, 35);
+            this.btnVerifikasi.TabIndex = 21;
+            this.btnVerifikasi.Text = "Verifikasi";
+            this.btnVerifikasi.UseVisualStyleBackColor = false;
+            this.btnVerifikasi.Click += new System.EventHandler(this.btnVerifikasi_Click);
             // 
             // dgvVerifikasi
             // 
@@ -115,7 +117,6 @@
             this.dgvVerifikasi.ReadOnly = true;
             this.dgvVerifikasi.Size = new System.Drawing.Size(660, 150);
             this.dgvVerifikasi.TabIndex = 22;
-            this.dgvVerifikasi.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVerifikasi_CellClick);
             // 
             // btnBack
             // 
@@ -138,7 +139,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.dgvVerifikasi);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnVerifikasi);
             this.Controls.Add(this.btnTampildata);
             this.Controls.Add(this.txtCariKode);
             this.Controls.Add(this.lblPilihTanggalVerif);
@@ -161,7 +162,7 @@
         private System.Windows.Forms.Label lblPilihTanggalVerif;
         private System.Windows.Forms.TextBox txtCariKode;
         private System.Windows.Forms.Button btnTampildata;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnVerifikasi;
         private System.Windows.Forms.DataGridView dgvVerifikasi;
         private System.Windows.Forms.Button btnBack;
     }

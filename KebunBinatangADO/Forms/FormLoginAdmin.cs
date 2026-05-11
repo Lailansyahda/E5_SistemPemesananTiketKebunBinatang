@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KebunBinatangADO.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -37,6 +38,8 @@ namespace KebunBinatangADO
                 if (result > 0)
                 {
                     MessageBox.Show("Login Berhasil!");
+                    FormDashboardAdmin dashboard = new FormDashboardAdmin();
+                    dashboard.Show();
                     this.Hide();
                 }
                 else
