@@ -19,6 +19,8 @@ namespace KebunBinatangADO.Forms
 
         private void FormKelolaTiket_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'dBKebunBinatangADODataSet.Tiket' table. You can move, or remove it, as needed.
+            this.tiketTableAdapter.Fill(this.dBKebunBinatangADODataSet.Tiket);
             txtID.ReadOnly = true;
             txtID.Enabled = false;
             LoadData();
@@ -34,6 +36,7 @@ namespace KebunBinatangADO.Forms
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dgvKelolaTiket.DataSource = dt;
+
             }
             catch (Exception ex)
             {

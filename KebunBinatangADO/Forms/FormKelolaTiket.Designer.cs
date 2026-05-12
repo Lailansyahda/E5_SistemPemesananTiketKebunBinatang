@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormKelolaTiket));
             this.lblKelolaTiket = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
+            this.tiketBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dBKebunBinatangADODataSet = new KebunBinatangADO.DBKebunBinatangADODataSet();
             this.lblTiket = new System.Windows.Forms.Label();
             this.lblHarga = new System.Windows.Forms.Label();
             this.lblKuota = new System.Windows.Forms.Label();
@@ -46,7 +48,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dgvKelolaTiket = new System.Windows.Forms.DataGridView();
             this.btnBack = new System.Windows.Forms.Button();
-            this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.tiketTableAdapter = new KebunBinatangADO.DBKebunBinatangADODataSetTableAdapters.TiketTableAdapter();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -58,6 +60,13 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.iDTiketDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.namaTiketDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hargaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kuotaHarianDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.tiketBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBKebunBinatangADODataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numKuota)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKelolaTiket)).BeginInit();
@@ -87,6 +96,16 @@
             this.lblID.Size = new System.Drawing.Size(70, 15);
             this.lblID.TabIndex = 1;
             this.lblID.Text = "ID Tiket : ";
+            // 
+            // tiketBindingSource
+            // 
+            this.tiketBindingSource.DataMember = "Tiket";
+            this.tiketBindingSource.DataSource = this.dBKebunBinatangADODataSet;
+            // 
+            // dBKebunBinatangADODataSet
+            // 
+            this.dBKebunBinatangADODataSet.DataSetName = "DBKebunBinatangADODataSet";
+            this.dBKebunBinatangADODataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // lblTiket
             // 
@@ -123,6 +142,7 @@
             // 
             // txtID
             // 
+            this.txtID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tiketBindingSource, "IDTiket", true));
             this.txtID.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtID.Location = new System.Drawing.Point(211, 96);
             this.txtID.Name = "txtID";
@@ -131,6 +151,7 @@
             // 
             // txtTiket
             // 
+            this.txtTiket.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tiketBindingSource, "NamaTiket", true));
             this.txtTiket.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTiket.Location = new System.Drawing.Point(211, 145);
             this.txtTiket.Name = "txtTiket";
@@ -139,6 +160,7 @@
             // 
             // txtHarga
             // 
+            this.txtHarga.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tiketBindingSource, "Harga", true));
             this.txtHarga.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtHarga.Location = new System.Drawing.Point(211, 194);
             this.txtHarga.Name = "txtHarga";
@@ -163,7 +185,7 @@
             this.btnEdit.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnEdit.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.ForeColor = System.Drawing.Color.White;
-            this.btnEdit.Location = new System.Drawing.Point(524, 138);
+            this.btnEdit.Location = new System.Drawing.Point(525, 138);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(158, 36);
             this.btnEdit.TabIndex = 10;
@@ -223,10 +245,19 @@
             // 
             this.dgvKelolaTiket.AllowUserToAddRows = false;
             this.dgvKelolaTiket.AllowUserToDeleteRows = false;
+            this.dgvKelolaTiket.AutoGenerateColumns = false;
             this.dgvKelolaTiket.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvKelolaTiket.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.iDTiketDataGridViewTextBoxColumn,
+            this.namaTiketDataGridViewTextBoxColumn,
+            this.hargaDataGridViewTextBoxColumn,
+            this.kuotaHarianDataGridViewTextBoxColumn});
+            this.dgvKelolaTiket.DataSource = this.tiketBindingSource;
             this.dgvKelolaTiket.Location = new System.Drawing.Point(83, 288);
+            this.dgvKelolaTiket.MultiSelect = false;
             this.dgvKelolaTiket.Name = "dgvKelolaTiket";
             this.dgvKelolaTiket.ReadOnly = true;
+            this.dgvKelolaTiket.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvKelolaTiket.Size = new System.Drawing.Size(600, 150);
             this.dgvKelolaTiket.TabIndex = 16;
             this.dgvKelolaTiket.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKelolaTiket_CellClick);
@@ -244,33 +275,9 @@
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // bindingNavigator1
+            // tiketTableAdapter
             // 
-            this.bindingNavigator1.AddNewItem = this.bindingNavigatorAddNewItem;
-            this.bindingNavigator1.CountItem = this.bindingNavigatorCountItem;
-            this.bindingNavigator1.DeleteItem = this.bindingNavigatorDeleteItem;
-            this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorMoveFirstItem,
-            this.bindingNavigatorMovePreviousItem,
-            this.bindingNavigatorSeparator,
-            this.bindingNavigatorPositionItem,
-            this.bindingNavigatorCountItem,
-            this.bindingNavigatorSeparator1,
-            this.bindingNavigatorMoveNextItem,
-            this.bindingNavigatorMoveLastItem,
-            this.bindingNavigatorSeparator2,
-            this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorDeleteItem});
-            this.bindingNavigator1.Location = new System.Drawing.Point(0, 0);
-            this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.bindingNavigator1.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
-            this.bindingNavigator1.Name = "bindingNavigator1";
-            this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(800, 25);
-            this.bindingNavigator1.TabIndex = 18;
-            this.bindingNavigator1.Text = "bindingNavigator1";
+            this.tiketTableAdapter.ClearBeforeFill = true;
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -314,7 +321,7 @@
             // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // bindingNavigatorMoveNextItem
@@ -337,7 +344,7 @@
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // bindingNavigatorAddNewItem
@@ -357,6 +364,65 @@
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorDeleteItem.Text = "Delete";
+            // 
+            // bindingNavigator1
+            // 
+            this.bindingNavigator1.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.bindingNavigator1.BindingSource = this.tiketBindingSource;
+            this.bindingNavigator1.CountItem = this.bindingNavigatorCountItem;
+            this.bindingNavigator1.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.tiketBindingSource, "IDTiket", true));
+            this.bindingNavigator1.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bindingNavigatorMoveFirstItem,
+            this.bindingNavigatorMovePreviousItem,
+            this.bindingNavigatorSeparator,
+            this.bindingNavigatorPositionItem,
+            this.bindingNavigatorCountItem,
+            this.bindingNavigatorSeparator1,
+            this.bindingNavigatorMoveNextItem,
+            this.bindingNavigatorMoveLastItem,
+            this.bindingNavigatorSeparator2,
+            this.bindingNavigatorAddNewItem,
+            this.bindingNavigatorDeleteItem});
+            this.bindingNavigator1.Location = new System.Drawing.Point(0, 0);
+            this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+            this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
+            this.bindingNavigator1.MoveNextItem = this.bindingNavigatorMoveNextItem;
+            this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+            this.bindingNavigator1.Name = "bindingNavigator1";
+            this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
+            this.bindingNavigator1.Size = new System.Drawing.Size(800, 25);
+            this.bindingNavigator1.TabIndex = 18;
+            this.bindingNavigator1.Tag = "Bin";
+            this.bindingNavigator1.Text = "bindingNavigator1";
+            // 
+            // iDTiketDataGridViewTextBoxColumn
+            // 
+            this.iDTiketDataGridViewTextBoxColumn.DataPropertyName = "IDTiket";
+            this.iDTiketDataGridViewTextBoxColumn.HeaderText = "IDTiket";
+            this.iDTiketDataGridViewTextBoxColumn.Name = "iDTiketDataGridViewTextBoxColumn";
+            this.iDTiketDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // namaTiketDataGridViewTextBoxColumn
+            // 
+            this.namaTiketDataGridViewTextBoxColumn.DataPropertyName = "NamaTiket";
+            this.namaTiketDataGridViewTextBoxColumn.HeaderText = "NamaTiket";
+            this.namaTiketDataGridViewTextBoxColumn.Name = "namaTiketDataGridViewTextBoxColumn";
+            this.namaTiketDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // hargaDataGridViewTextBoxColumn
+            // 
+            this.hargaDataGridViewTextBoxColumn.DataPropertyName = "Harga";
+            this.hargaDataGridViewTextBoxColumn.HeaderText = "Harga";
+            this.hargaDataGridViewTextBoxColumn.Name = "hargaDataGridViewTextBoxColumn";
+            this.hargaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // kuotaHarianDataGridViewTextBoxColumn
+            // 
+            this.kuotaHarianDataGridViewTextBoxColumn.DataPropertyName = "KuotaHarian";
+            this.kuotaHarianDataGridViewTextBoxColumn.HeaderText = "KuotaHarian";
+            this.kuotaHarianDataGridViewTextBoxColumn.Name = "kuotaHarianDataGridViewTextBoxColumn";
+            this.kuotaHarianDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // FormKelolaTiket
             // 
@@ -384,6 +450,8 @@
             this.Name = "FormKelolaTiket";
             this.Text = "FormKelolaTiket";
             this.Load += new System.EventHandler(this.FormKelolaTiket_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.tiketBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBKebunBinatangADODataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numKuota)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKelolaTiket)).EndInit();
@@ -413,17 +481,24 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DataGridView dgvKelolaTiket;
         private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.BindingNavigator bindingNavigator1;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
-        private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
+        private DBKebunBinatangADODataSet dBKebunBinatangADODataSet;
+        private System.Windows.Forms.BindingSource tiketBindingSource;
+        private DBKebunBinatangADODataSetTableAdapters.TiketTableAdapter tiketTableAdapter;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
         private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
+        private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
+        private System.Windows.Forms.BindingNavigator bindingNavigator1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDTiketDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn namaTiketDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hargaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kuotaHarianDataGridViewTextBoxColumn;
     }
 }
