@@ -90,5 +90,18 @@ namespace KebunBinatangADO.Forms
                             INSERT INTO dbo.Booking
                             SELECT * FROM dbo.Booking_Backup;
                         END";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
                 }
+                MessageBox.Show("Data berhasil direset");
+                LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Reset gagal: " + ex.Message);
+            }
+        }
+    }
 }
