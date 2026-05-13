@@ -76,12 +76,21 @@ namespace KebunBinatangADO.Forms
                     string query = @"
                         IF OBJECT_ID('dbo.Booking_Backup') IS NOT NULL
                         BEGIN
+                            EXEC sp_MSforeachtable 'ALTER TABLE ? NOCHECK CONSTRAINT ALL';
+
                             DELETE FROM dbo.Booking;
+
                             SET IDENTITY_INSERT dbo.Booking ON;
-                            INSERT INTO dbo.Booking (IDBooking, KodeBooking, Nama, NoHp, Email, TanggalKunjungan, TotalHarga, StatusPembayaran)
-                            SELECT IDBooking, KodeBooking, Nama, NoHp, Email, TanggalKunjungan, TotalHarga, StatusPembayaran FROM dbo.Booking_Backup;
+
+                            INSERT INTO dbo.Booking (IDBooking, KodeBooking, IDPengunjung, IDAdmin, IDTiket, Nama, NoHp, Email, TanggalKunjungan, TiketDewasa, TiketPelajar, TiketAnak, DetailTiket, TotalHarga, StatusPembayaran)
+                            SELECT IDBooking, KodeBooking, IDPengunjung, IDAdmin, IDTiket, Nama, NoHp, Email, TanggalKunjungan, TiketDewasa, TiketPelajar, TiketAnak, DetailTiket, TotalHarga, StatusPembayaran 
+                            FROM dbo.Booking_Backup;
+
                             SET IDENTITY_INSERT dbo.Booking OFF;
+
+                            EXEC sp_MSforeachtable 'ALTER TABLE ? CHECK CONSTRAINT ALL';
                         END";
+
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.ExecuteNonQuery();
