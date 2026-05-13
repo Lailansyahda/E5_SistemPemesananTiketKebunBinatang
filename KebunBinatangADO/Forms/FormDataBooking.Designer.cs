@@ -68,6 +68,7 @@
             this.detailTiketDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalHargaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusPembayaranDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnResetData = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDataBooking)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
@@ -415,12 +416,23 @@
             this.statusPembayaranDataGridViewTextBoxColumn.Name = "statusPembayaranDataGridViewTextBoxColumn";
             this.statusPembayaranDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // btnResetData
+            // 
+            this.btnResetData.Location = new System.Drawing.Point(165, 411);
+            this.btnResetData.Name = "btnResetData";
+            this.btnResetData.Size = new System.Drawing.Size(75, 23);
+            this.btnResetData.TabIndex = 23;
+            this.btnResetData.Text = "Reset Data";
+            this.btnResetData.UseVisualStyleBackColor = true;
+            this.btnResetData.Click += new System.EventHandler(this.btnResetData_Click);
+            // 
             // FormDataBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Peru;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnResetData);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.dgvDataBooking);
@@ -485,5 +497,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn detailTiketDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalHargaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn statusPembayaranDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnResetData;
     }
 }
