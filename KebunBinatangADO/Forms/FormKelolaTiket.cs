@@ -142,10 +142,10 @@ namespace KebunBinatangADO.Forms
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvKelolaTiket.Rows[e.RowIndex];
-                txtID.Text = row.Cells["IDTiket"].Value.ToString();
-                txtTiket.Text = row.Cells["NamaTiket"].Value.ToString();
-                txtHarga.Text = row.Cells["Harga"].Value.ToString();
-                numKuota.Value = Convert.ToInt32(row.Cells["KuotaHarian"].Value);
+                txtID.Text = row.Cells[0].Value.ToString();
+                txtTiket.Text = row.Cells[1].Value.ToString();
+                txtHarga.Text = row.Cells[2].Value.ToString();
+                numKuota.Value = Convert.ToInt32(row.Cells[3].Value);
             }
         }
 
