@@ -40,23 +40,20 @@ namespace KebunBinatangADO.Forms
                     {
                         query += " WHERE KodeBooking LIKE @filter OR Nama LIKE @filter";
                     }
-                }
-                
 
-                if (!string.IsNullOrEmpty(filter))
-                {
-                    query += " WHERE KodeBooking LIKE @filter OR Nama LIKE @filter";
-                }
+                    using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                    {
+                        if (!string.IsNullOrEmpty(filter))
+                        {
+                            da.SelectCommand.Parameters.AddWithValue("@filter", "%" + filter + "%");
+                        }
 
-                SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                if (!string.IsNullOrEmpty(filter))
-                {
-                    da.SelectCommand.Parameters.AddWithValue("@filter", "%" + filter + "%");
+                        dtBooking = new DataTable();
+                        da.Fill(dtBooking);
+                        bindingSource.DataSource = dtBooking;
+                        dgvDataBooking.DataSource = bindingSource;
+                    }
                 }
-
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dgvDataBooking.DataSource = dt;
             }
             catch (Exception ex)
             {
