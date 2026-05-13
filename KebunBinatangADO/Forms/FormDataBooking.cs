@@ -53,11 +53,7 @@ namespace KebunBinatangADO.Forms
                 MessageBox.Show("Gagal load data: " + ex.Message);
             }
         }
-            finally
-            {
-                conn.Close();
-            }
-        }
+
 
         private void btnTampil_Click(object sender, EventArgs e)
         {
@@ -81,8 +77,10 @@ namespace KebunBinatangADO.Forms
                         IF OBJECT_ID('dbo.Booking_Backup') IS NOT NULL
                         BEGIN
                             DELETE FROM dbo.Booking;
-                            INSERT INTO dbo.Booking
-                            SELECT * FROM dbo.Booking_Backup;
+                            SET IDENTITY_INSERT dbo.Booking ON;
+                            INSERT INTO dbo.Booking (IDBooking, KodeBooking, Nama, NoHp, Email, TanggalKunjungan, TotalHarga, StatusPembayaran)
+                            SELECT IDBooking, KodeBooking, Nama, NoHp, Email, TanggalKunjungan, TotalHarga, StatusPembayaran FROM dbo.Booking_Backup;
+                            SET IDENTITY_INSERT dbo.Booking OFF;
                         END";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
