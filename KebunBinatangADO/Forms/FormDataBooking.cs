@@ -7,7 +7,7 @@ namespace KebunBinatangADO.Forms
 {
     public partial class FormDataBooking : Form
     {
-       
+
         string connString = "Data Source=LAPTOP-2V9KUAS1\\LAILANSYAHDA; Initial Catalog=DBKebunBinatangADO; Integrated Security=True";
         SqlConnection conn;
 
@@ -19,7 +19,12 @@ namespace KebunBinatangADO.Forms
 
         private void FormDataBooking_Load(object sender, EventArgs e)
         {
-            LoadData(); 
+                dgvDataBooking.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgvDataBooking.MultiSelect = false;
+                dgvDataBooking.ReadOnly = true;
+                dgvDataBooking.AllowUserToAddRows = false;
+                dgvDataBooking.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                LoadData();
         }
 
         private void LoadData(string filter = "")
@@ -29,7 +34,7 @@ namespace KebunBinatangADO.Forms
                 conn.Open();
                 string query = "SELECT * FROM Booking";
 
-             
+
                 if (!string.IsNullOrEmpty(filter))
                 {
                     query += " WHERE KodeBooking LIKE @filter OR Nama LIKE @filter";
@@ -57,7 +62,7 @@ namespace KebunBinatangADO.Forms
 
         private void btnTampil_Click(object sender, EventArgs e)
         {
-            
+
             LoadData(textBox1.Text);
         }
 

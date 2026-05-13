@@ -113,7 +113,6 @@
             this.dgvDataBooking.ReadOnly = true;
             this.dgvDataBooking.Size = new System.Drawing.Size(582, 150);
             this.dgvDataBooking.TabIndex = 20;
-
             // 
             // btnBack
             // 

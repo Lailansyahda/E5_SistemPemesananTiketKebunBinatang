@@ -47,6 +47,10 @@
             this.numKuota = new System.Windows.Forms.NumericUpDown();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dgvKelolaTiket = new System.Windows.Forms.DataGridView();
+            this.iDTiketDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.namaTiketDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hargaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kuotaHarianDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnBack = new System.Windows.Forms.Button();
             this.tiketTableAdapter = new KebunBinatangADO.DBKebunBinatangADODataSetTableAdapters.TiketTableAdapter();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -61,10 +65,6 @@
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
-            this.iDTiketDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.namaTiketDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hargaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kuotaHarianDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tiketBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dBKebunBinatangADODataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numKuota)).BeginInit();
@@ -262,6 +262,34 @@
             this.dgvKelolaTiket.TabIndex = 16;
             this.dgvKelolaTiket.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKelolaTiket_CellClick);
             // 
+            // iDTiketDataGridViewTextBoxColumn
+            // 
+            this.iDTiketDataGridViewTextBoxColumn.DataPropertyName = "IDTiket";
+            this.iDTiketDataGridViewTextBoxColumn.HeaderText = "IDTiket";
+            this.iDTiketDataGridViewTextBoxColumn.Name = "iDTiketDataGridViewTextBoxColumn";
+            this.iDTiketDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // namaTiketDataGridViewTextBoxColumn
+            // 
+            this.namaTiketDataGridViewTextBoxColumn.DataPropertyName = "NamaTiket";
+            this.namaTiketDataGridViewTextBoxColumn.HeaderText = "NamaTiket";
+            this.namaTiketDataGridViewTextBoxColumn.Name = "namaTiketDataGridViewTextBoxColumn";
+            this.namaTiketDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // hargaDataGridViewTextBoxColumn
+            // 
+            this.hargaDataGridViewTextBoxColumn.DataPropertyName = "Harga";
+            this.hargaDataGridViewTextBoxColumn.HeaderText = "Harga";
+            this.hargaDataGridViewTextBoxColumn.Name = "hargaDataGridViewTextBoxColumn";
+            this.hargaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // kuotaHarianDataGridViewTextBoxColumn
+            // 
+            this.kuotaHarianDataGridViewTextBoxColumn.DataPropertyName = "KuotaHarian";
+            this.kuotaHarianDataGridViewTextBoxColumn.HeaderText = "KuotaHarian";
+            this.kuotaHarianDataGridViewTextBoxColumn.Name = "kuotaHarianDataGridViewTextBoxColumn";
+            this.kuotaHarianDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // btnBack
             // 
             this.btnBack.BackColor = System.Drawing.Color.Chocolate;
@@ -395,34 +423,6 @@
             this.bindingNavigator1.TabIndex = 18;
             this.bindingNavigator1.Tag = "Bin";
             this.bindingNavigator1.Text = "bindingNavigator1";
-            // 
-            // iDTiketDataGridViewTextBoxColumn
-            // 
-            this.iDTiketDataGridViewTextBoxColumn.DataPropertyName = "IDTiket";
-            this.iDTiketDataGridViewTextBoxColumn.HeaderText = "IDTiket";
-            this.iDTiketDataGridViewTextBoxColumn.Name = "iDTiketDataGridViewTextBoxColumn";
-            this.iDTiketDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // namaTiketDataGridViewTextBoxColumn
-            // 
-            this.namaTiketDataGridViewTextBoxColumn.DataPropertyName = "NamaTiket";
-            this.namaTiketDataGridViewTextBoxColumn.HeaderText = "NamaTiket";
-            this.namaTiketDataGridViewTextBoxColumn.Name = "namaTiketDataGridViewTextBoxColumn";
-            this.namaTiketDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // hargaDataGridViewTextBoxColumn
-            // 
-            this.hargaDataGridViewTextBoxColumn.DataPropertyName = "Harga";
-            this.hargaDataGridViewTextBoxColumn.HeaderText = "Harga";
-            this.hargaDataGridViewTextBoxColumn.Name = "hargaDataGridViewTextBoxColumn";
-            this.hargaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // kuotaHarianDataGridViewTextBoxColumn
-            // 
-            this.kuotaHarianDataGridViewTextBoxColumn.DataPropertyName = "KuotaHarian";
-            this.kuotaHarianDataGridViewTextBoxColumn.HeaderText = "KuotaHarian";
-            this.kuotaHarianDataGridViewTextBoxColumn.Name = "kuotaHarianDataGridViewTextBoxColumn";
-            this.kuotaHarianDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // FormKelolaTiket
             // 
