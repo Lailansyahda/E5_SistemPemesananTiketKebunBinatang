@@ -113,5 +113,17 @@ namespace KebunBinatangADO.Forms
                     conn.Open();
                     string query = "SELECT * FROM vw_DataBooking WHERE KodeBooking = '" + textBox1.Text + "'";
                     using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        dgvDataBooking.DataSource = dt;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
