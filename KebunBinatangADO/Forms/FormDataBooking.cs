@@ -35,6 +35,11 @@ namespace KebunBinatangADO.Forms
                 {
                     conn.Open();
                     string query = "SELECT * FROM vw_DataBooking";
+
+                    if (!string.IsNullOrEmpty(filter))
+                    {
+                        query += " WHERE KodeBooking LIKE @filter OR Nama LIKE @filter";
+                    }
                 }
                 
 
