@@ -95,13 +95,14 @@ namespace KebunBinatangADO.Forms
             try
             {
                 conn.Open();
-                string query = "UPDATE Tiket SET NamaTiket=@nama, Harga=@harga, KuotaHarian=@kuota WHERE IDTiket=@id";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlCommand cmd = new SqlCommand("sp_UpdateTiket", conn))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@id", txtID.Text);
                     cmd.Parameters.AddWithValue("@nama", txtTiket.Text);
                     cmd.Parameters.AddWithValue("@harga", txtHarga.Text);
                     cmd.Parameters.AddWithValue("@kuota", numKuota.Value);
+
                     cmd.ExecuteNonQuery();
                 }
                 MessageBox.Show("Tiket berhasil diupdate!");
