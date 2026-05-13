@@ -69,6 +69,7 @@
             this.totalHargaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusPembayaranDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnResetData = new System.Windows.Forms.Button();
+            this.btnTestInjection = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDataBooking)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
@@ -418,7 +419,7 @@
             // 
             // btnResetData
             // 
-            this.btnResetData.Location = new System.Drawing.Point(165, 411);
+            this.btnResetData.Location = new System.Drawing.Point(166, 407);
             this.btnResetData.Name = "btnResetData";
             this.btnResetData.Size = new System.Drawing.Size(75, 23);
             this.btnResetData.TabIndex = 23;
@@ -426,12 +427,23 @@
             this.btnResetData.UseVisualStyleBackColor = true;
             this.btnResetData.Click += new System.EventHandler(this.btnResetData_Click);
             // 
+            // btnTestInjection
+            // 
+            this.btnTestInjection.Location = new System.Drawing.Point(400, 406);
+            this.btnTestInjection.Name = "btnTestInjection";
+            this.btnTestInjection.Size = new System.Drawing.Size(130, 23);
+            this.btnTestInjection.TabIndex = 24;
+            this.btnTestInjection.Text = "Test Injection";
+            this.btnTestInjection.UseVisualStyleBackColor = true;
+            this.btnTestInjection.Click += new System.EventHandler(this.btnTestInjection_Click);
+            // 
             // FormDataBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Peru;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnTestInjection);
             this.Controls.Add(this.btnResetData);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.btnBack);
@@ -498,5 +510,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn totalHargaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn statusPembayaranDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btnResetData;
+        private System.Windows.Forms.Button btnTestInjection;
     }
 }

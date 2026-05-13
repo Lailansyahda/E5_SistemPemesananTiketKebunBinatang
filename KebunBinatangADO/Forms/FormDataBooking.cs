@@ -39,30 +39,20 @@ namespace KebunBinatangADO.Forms
                 {
                     conn.Open();
                     string query = "SELECT * FROM vw_DataBooking";
-
-                    if (!string.IsNullOrEmpty(filter))
-                    {
-                        query += " WHERE KodeBooking LIKE @filter OR Nama LIKE @filter";
-                    }
-
                     using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
                     {
-                        if (!string.IsNullOrEmpty(filter))
-                        {
-                            da.SelectCommand.Parameters.AddWithValue("@filter", "%" + filter + "%");
-                        }
-
                         dtBooking = new DataTable();
                         da.Fill(dtBooking);
-                        bookingBindingSource.DataSource = dtBooking;
-                        dgvDataBooking.DataSource = bookingBindingSource;
+                        bindingSource.DataSource = dtBooking;
+                        dgvDataBooking.DataSource = bindingSource;
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Gagal memuat data: " + ex.Message);
+                MessageBox.Show("Gagal load data: " + ex.Message);
             }
+        }
             finally
             {
                 conn.Close();
