@@ -103,5 +103,15 @@ namespace KebunBinatangADO.Forms
                 MessageBox.Show("Reset gagal: " + ex.Message);
             }
         }
+
+        private void btnTestInjection_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connString))
+                {
+                    conn.Open();
+                    string query = "SELECT * FROM vw_DataBooking WHERE KodeBooking = '" + textBox1.Text + "'";
+                    using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
     }
 }
