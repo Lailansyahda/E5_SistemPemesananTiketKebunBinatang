@@ -103,14 +103,14 @@ namespace KebunBinatangADO.Forms
                 using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
-                    string query = "SELECT * FROM vw_DataBooking WHERE KodeBooking = '" + textBox1.Text + "'";
-                    using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                    string query = "UPDATE Booking SET Nama = 'HACKED' WHERE KodeBooking = '" + textBox1.Text + "'";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        dgvDataBooking.DataSource = dt;
+                        int result = cmd.ExecuteNonQuery();
+                        MessageBox.Show(result + " baris terupdate");
                     }
                 }
+                LoadData();
             }
             catch (Exception ex)
             {
