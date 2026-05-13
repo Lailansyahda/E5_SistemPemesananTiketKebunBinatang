@@ -75,5 +75,20 @@ namespace KebunBinatangADO.Forms
         {
             this.Close();
         }
-    }
+
+        private void btnResetData_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connString))
+                {
+                    conn.Open();
+                    string query = @"
+                        IF OBJECT_ID('dbo.Booking_Backup') IS NOT NULL
+                        BEGIN
+                            DELETE FROM dbo.Booking;
+                            INSERT INTO dbo.Booking
+                            SELECT * FROM dbo.Booking_Backup;
+                        END";
+                }
 }
