@@ -121,9 +121,9 @@ namespace KebunBinatangADO.Forms
                 try
                 {
                     conn.Open();
-                    string query = "DELETE FROM Tiket WHERE IDTiket=@id";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    using (SqlCommand cmd = new SqlCommand("sp_DeleteTiket", conn))
                     {
+                        cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@id", txtID.Text);
                         cmd.ExecuteNonQuery();
                     }
