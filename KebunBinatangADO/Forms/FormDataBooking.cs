@@ -31,9 +31,12 @@ namespace KebunBinatangADO.Forms
         {
             try
             {
-                conn.Open();
-                string query = "SELECT * FROM Booking";
-
+                using (SqlConnection conn = new SqlConnection(connString))
+                {
+                    conn.Open();
+                    string query = "SELECT * FROM vw_DataBooking";
+                }
+                
 
                 if (!string.IsNullOrEmpty(filter))
                 {
