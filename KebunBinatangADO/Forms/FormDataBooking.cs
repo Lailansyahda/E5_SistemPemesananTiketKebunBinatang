@@ -54,8 +54,8 @@ namespace KebunBinatangADO.Forms
 
                         dtBooking = new DataTable();
                         da.Fill(dtBooking);
-                        bindingSource.DataSource = dtBooking;
-                        dgvDataBooking.DataSource = bindingSource;
+                        bookingBindingSource.DataSource = dtBooking;
+                        dgvDataBooking.DataSource = bookingBindingSource;
                     }
                 }
             }
