@@ -31,12 +31,14 @@ namespace KebunBinatangADO.Forms
             try
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
-                string query = "SELECT * FROM Tiket";
-                SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dgvKelolaTiket.DataSource = dt;
-
+                using (SqlCommand cmd = new SqlCommand("sp_GetTiket", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure; // [cite: 141]
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    dgvKelolaTiket.DataSource = dt;
+                }
             }
             catch (Exception ex)
             {
