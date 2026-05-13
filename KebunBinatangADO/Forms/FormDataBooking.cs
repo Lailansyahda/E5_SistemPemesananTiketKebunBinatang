@@ -21,7 +21,9 @@ namespace KebunBinatangADO.Forms
 
         private void FormDataBooking_Load(object sender, EventArgs e)
         {
-                dgvDataBooking.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            // TODO: This line of code loads data into the 'dBKebunBinatangADODataSet.Booking' table. You can move, or remove it, as needed.
+            this.bookingTableAdapter.Fill(this.dBKebunBinatangADODataSet.Booking);
+            dgvDataBooking.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dgvDataBooking.MultiSelect = false;
                 dgvDataBooking.ReadOnly = true;
                 dgvDataBooking.AllowUserToAddRows = false;
