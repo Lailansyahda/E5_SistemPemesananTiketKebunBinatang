@@ -17,9 +17,22 @@ namespace KebunBinatangADO.Forms
             conn = new SqlConnection(connString);
         }
 
+        private void SimpanLog(string pesan)
+        {
+            using (SqlConnection connection = new SqlConnection(connString))
+            {
+                string query = @"INSERT INTO LogError VALUES (GETDATE(), @pesan)";
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@pesan", pesan);
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         private void FormKelolaTiket_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'dBKebunBinatangADODataSet.Tiket' table. You can move, or remove it, as needed.
             this.tiketTableAdapter.Fill(this.dBKebunBinatangADODataSet.Tiket);
             txtID.ReadOnly = true;
             txtID.Enabled = false;
@@ -42,11 +55,20 @@ namespace KebunBinatangADO.Forms
                     dgvKelolaTiket.DataSource = tiketBindingSource;
                 }
             }
+            catch (SqlException ex)
+            {
+                SimpanLog(ex.Message);
+                MessageBox.Show("SQL Error: " + ex.Message);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show("Gagal memuat data: " + ex.Message);
+                SimpanLog(ex.Message);
+                MessageBox.Show("General Error: " + ex.Message);
             }
-            finally { conn.Close(); }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         private bool IsValidInput()
@@ -75,18 +97,30 @@ namespace KebunBinatangADO.Forms
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand("sp_InsertTiket", conn))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure; // [cite: 159]
-                    cmd.Parameters.AddWithValue("@nama", txtTiket.Text);
-                    cmd.Parameters.AddWithValue("@harga", txtHarga.Text);
-                    cmd.Parameters.AddWithValue("@kuota", numKuota.Value);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@NamaTiket", txtTiket.Text);
+                    cmd.Parameters.AddWithValue("@Harga", txtHarga.Text);
+                    cmd.Parameters.AddWithValue("@KuotaHarian", numKuota.Value);
 
                     cmd.ExecuteNonQuery();
                 }
                 MessageBox.Show("Tiket berhasil ditambah!");
                 LoadData();
             }
-            catch (Exception ex) { MessageBox.Show("Error: " + ex.Message); }
-            finally { conn.Close(); }
+            catch (SqlException ex)
+            {
+                SimpanLog(ex.Message);
+                MessageBox.Show("SQL Error: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                SimpanLog(ex.Message);
+                MessageBox.Show("General Error: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -100,22 +134,28 @@ namespace KebunBinatangADO.Forms
                 using (SqlCommand cmd = new SqlCommand("sp_UpdateTiket", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id", txtID.Text);
-                    cmd.Parameters.AddWithValue("@nama", txtTiket.Text);
-                    cmd.Parameters.AddWithValue("@harga", txtHarga.Text);
-                    cmd.Parameters.AddWithValue("@kuota", numKuota.Value);
+                    cmd.Parameters.AddWithValue("@IDTiket", txtID.Text);
+                    cmd.Parameters.AddWithValue("@NamaTiket", txtTiket.Text);
+                    cmd.Parameters.AddWithValue("@Harga", txtHarga.Text);
+                    cmd.Parameters.AddWithValue("@KuotaHarian", numKuota.Value);
 
                     cmd.ExecuteNonQuery();
                 }
                 MessageBox.Show("Tiket berhasil diupdate!");
                 LoadData();
             }
-            catch (Exception ex) 
+            catch (SqlException ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                SimpanLog(ex.Message);
+                MessageBox.Show("SQL Error: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                SimpanLog(ex.Message);
+                MessageBox.Show("General Error: " + ex.Message);
             }
             finally
-            { 
+            {
                 conn.Close();
             }
         }
@@ -132,7 +172,7 @@ namespace KebunBinatangADO.Forms
                     using (SqlCommand cmd = new SqlCommand("sp_DeleteTiket", conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@id", txtID.Text);
+                        cmd.Parameters.AddWithValue("@IDTiket", txtID.Text);
                         cmd.ExecuteNonQuery();
                     }
                     LoadData();
@@ -140,8 +180,20 @@ namespace KebunBinatangADO.Forms
                     txtTiket.Clear();
                     txtHarga.Clear();
                 }
-                catch (Exception ex) { MessageBox.Show("Error: " + ex.Message); }
-                finally { conn.Close(); }
+                catch (SqlException ex)
+                {
+                    SimpanLog(ex.Message);
+                    MessageBox.Show("SQL Error: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    SimpanLog(ex.Message);
+                    MessageBox.Show("General Error: " + ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
             }
         }
 
@@ -160,6 +212,75 @@ namespace KebunBinatangADO.Forms
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnTestInjection_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connString))
+                {
+                    string query = "UPDATE Tiket SET NamaTiket = 'HACKED' WHERE IDTiket = " + txtID.Text;
+
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Update berhasil");
+                    LoadData();
+                }
+            }
+            catch (SqlException ex)
+            {
+                SimpanLog(ex.Message);
+                MessageBox.Show("SQL Error (Security Trigger): \n" + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                SimpanLog(ex.Message);
+                MessageBox.Show("General Error: " + ex.Message);
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connString))
+                {
+                    conn.Open();
+                    string query = @"
+                DELETE FROM Tiket;
+                DBCC CHECKIDENT ('Tiket', RESEED, 0);
+                INSERT INTO Tiket (NamaTiket, Harga, KuotaHarian) VALUES 
+                ('Dewasa', 70000, 300),
+                ('Pelajar', 50000, 300),
+                ('Anak', 30000, 200);";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                txtID.Clear();
+                txtTiket.Clear();
+                txtHarga.Clear();
+                numKuota.Value = 0;
+
+                LoadData();
+
+                MessageBox.Show("Data di database dan form berhasil direset ke data awal!");
+            }
+            catch (SqlException ex)
+            {
+                SimpanLog(ex.Message);
+                MessageBox.Show("SQL Error (Reset Gagal): " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                SimpanLog(ex.Message);
+                MessageBox.Show("Gagal mereset data: " + ex.Message);
+            }
         }
     }
 }
