@@ -32,6 +32,10 @@ namespace KebunBinatangADO.Forms
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     dgvLaporan.DataSource = dt;
+
+                    laporanBindingSource.DataSource = dt;
+                    bindingNavigator1.BindingSource = laporanBindingSource;
+                    dgvLaporan.DataSource = laporanBindingSource;
                 }
             }
             catch (Exception ex)
@@ -51,6 +55,8 @@ namespace KebunBinatangADO.Forms
 
         private void FormLaporan_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'dBKebunBinatangADODataSet.Laporan' table. You can move, or remove it, as needed.
+            // this.laporanTableAdapter.Fill(this.dBKebunBinatangADODataSet.Laporan);
 
         }
     }

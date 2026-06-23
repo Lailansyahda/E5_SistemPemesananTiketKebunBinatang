@@ -43,8 +43,10 @@ namespace KebunBinatangADO.Forms
                     {
                         dtBooking = new DataTable();
                         da.Fill(dtBooking);
-                        bindingSource.DataSource = dtBooking;
-                        dgvDataBooking.DataSource = bindingSource;
+                        bookingBindingSource.DataSource = dtBooking;
+                        bindingNavigator1.BindingSource = bookingBindingSource;
+                        dgvDataBooking.DataSource = bookingBindingSource;
+
                     }
                 }
             }
