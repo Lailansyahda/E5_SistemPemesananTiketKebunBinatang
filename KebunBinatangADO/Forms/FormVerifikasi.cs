@@ -18,6 +18,12 @@ namespace KebunBinatangADO.Forms
 
         private void btnLoadData_Click(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'dBKebunBinatangADODataSet.Booking' table. You can move, or remove it, as needed.
+            this.bookingTableAdapter.Fill(this.dBKebunBinatangADODataSet.Booking);
+            // TODO: This line of code loads data into the 'dBKebunBinatangADODataSet.Pengunjung' table. You can move, or remove it, as needed.
+            this.pengunjungTableAdapter.Fill(this.dBKebunBinatangADODataSet.Pengunjung);
+            // TODO: This line of code loads data into the 'dBKebunBinatangADODataSet.Admin' table. You can move, or remove it, as needed.
+            this.adminTableAdapter.Fill(this.dBKebunBinatangADODataSet.Admin);
             try
             {
                 conn.Open();
@@ -27,7 +33,9 @@ namespace KebunBinatangADO.Forms
 
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-                dgvVerifikasi.DataSource = dt;
+                bookingBindingSource.DataSource = dt;
+                bindingNavigator1.BindingSource = bookingBindingSource;
+                dgvVerifikasi.DataSource = bookingBindingSource;
             }
             catch (Exception ex)
             {
