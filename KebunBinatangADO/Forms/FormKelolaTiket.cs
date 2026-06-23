@@ -33,11 +33,13 @@ namespace KebunBinatangADO.Forms
                 if (conn.State == ConnectionState.Closed) conn.Open();
                 using (SqlCommand cmd = new SqlCommand("sp_GetTiket", conn))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure; // [cite: 141]
+                    cmd.CommandType = CommandType.StoredProcedure;
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
-                    dgvKelolaTiket.DataSource = dt;
+                    tiketBindingSource.DataSource = dt;
+                    bindingNavigator1.BindingSource = tiketBindingSource;
+                    dgvKelolaTiket.DataSource = tiketBindingSource;
                 }
             }
             catch (Exception ex)
@@ -108,8 +110,14 @@ namespace KebunBinatangADO.Forms
                 MessageBox.Show("Tiket berhasil diupdate!");
                 LoadData();
             }
-            catch (Exception ex) { MessageBox.Show("Error: " + ex.Message); }
-            finally { conn.Close(); }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            { 
+                conn.Close();
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
