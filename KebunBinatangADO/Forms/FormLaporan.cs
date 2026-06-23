@@ -36,6 +36,7 @@ namespace KebunBinatangADO.Forms
                     laporanBindingSource.DataSource = dt;
                     bindingNavigator1.BindingSource = laporanBindingSource;
                     dgvLaporan.DataSource = laporanBindingSource;
+
                 }
             }
             catch (Exception ex)
