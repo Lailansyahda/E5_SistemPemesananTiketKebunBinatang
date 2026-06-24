@@ -30,7 +30,7 @@ namespace KebunBinatangADO.Forms
 
         private void btnLaporan_Click(object sender, EventArgs e)
         {
-            FormLaporan form = new FormLaporan();
+            FormLaporan form = new FormLaporan(DateTime.Now);
             form.Show();
         }
 
