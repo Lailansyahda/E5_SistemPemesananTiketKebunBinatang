@@ -141,7 +141,9 @@ namespace KebunBinatangADO.Forms
 
         private void btnCetak_Click(object sender, EventArgs e)
         {
-
+            ReportLaporan frmCetak = new ReportLaporan(dtpLaporan.Value.Date);
+            frmCetak.Show();
+            this.Hide();
         }
     }
 }
