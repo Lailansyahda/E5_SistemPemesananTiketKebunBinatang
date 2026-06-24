@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KebunBinatangADO
 {
-    class ClassLaporanBooking
+    public class ClassLaporanBooking
     {
         public string KodeBooking { get; set; }
 
