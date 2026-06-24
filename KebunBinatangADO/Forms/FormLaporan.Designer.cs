@@ -56,6 +56,7 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.laporanTableAdapter = new KebunBinatangADO.DBKebunBinatangADODataSetTableAdapters.LaporanTableAdapter();
+            this.btnCetak = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLaporan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.laporanBindingSource)).BeginInit();
@@ -306,12 +307,23 @@
             // 
             this.laporanTableAdapter.ClearBeforeFill = true;
             // 
+            // btnCetak
+            // 
+            this.btnCetak.Location = new System.Drawing.Point(707, 121);
+            this.btnCetak.Name = "btnCetak";
+            this.btnCetak.Size = new System.Drawing.Size(75, 23);
+            this.btnCetak.TabIndex = 23;
+            this.btnCetak.Text = "Cetak";
+            this.btnCetak.UseVisualStyleBackColor = true;
+            this.btnCetak.Click += new System.EventHandler(this.btnCetak_Click);
+            // 
             // FormLaporan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Peru;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnCetak);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.dgvLaporan);
@@ -363,5 +375,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn iDBookingDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tanggalDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalTransaksiDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnCetak;
     }
 }

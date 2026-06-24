@@ -12,6 +12,9 @@ namespace KebunBinatangADO.Forms
         string connString = "Data Source=LAPTOP-2V9KUAS1\\LAILANSYAHDA; Initial Catalog=DBKebunBinatangADO; Integrated Security=True";
         SqlConnection conn;
 
+        DataTable dtbooking = new DataTable();
+        DataTable dtringkasan = new DataTable();
+
         public FormBookingPengunjung()
         {
             InitializeComponent();

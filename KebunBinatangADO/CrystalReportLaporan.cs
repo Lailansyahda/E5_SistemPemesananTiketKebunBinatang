@@ -16,14 +16,14 @@ namespace KebunBinatangADO {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RptLaporanBooking : ReportClass {
+    public class CrystalReportLaporan : ReportClass {
         
-        public RptLaporanBooking() {
+        public CrystalReportLaporan() {
         }
         
         public override string ResourceName {
             get {
-                return "RptLaporanBooking.rpt";
+                return "CrystalReportLaporan.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace KebunBinatangADO {
         
         public override string FullResourceName {
             get {
-                return "KebunBinatangADO.RptLaporanBooking.rpt";
+                return "KebunBinatangADO.CrystalReportLaporan.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace KebunBinatangADO {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRptLaporanBooking : Component, ICachedReport {
+    public class CachedCrystalReportLaporan : Component, ICachedReport {
         
-        public CachedRptLaporanBooking() {
+        public CachedCrystalReportLaporan() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace KebunBinatangADO {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RptLaporanBooking rpt = new RptLaporanBooking();
+            CrystalReportLaporan rpt = new CrystalReportLaporan();
             rpt.Site = this.Site;
             return rpt;
         }
