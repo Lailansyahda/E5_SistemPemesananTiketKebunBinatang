@@ -277,13 +277,13 @@ namespace KebunBinatangADO.Forms
                 using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
+
+                    // PERBAIKAN: Gunakan UPDATE agar tidak melanggar relasi (Foreign Key) database
                     string query = @"
-                DELETE FROM Tiket;
-                DBCC CHECKIDENT ('Tiket', RESEED, 0);
-                INSERT INTO Tiket (NamaTiket, Harga, KuotaHarian) VALUES 
-                ('Dewasa', 70000, 300),
-                ('Pelajar', 50000, 300),
-                ('Anak', 30000, 200);";
+                        UPDATE Tiket SET NamaTiket = 'Dewasa', Harga = 70000, KuotaHarian = 300 WHERE IDTiket = 1;
+                        UPDATE Tiket SET NamaTiket = 'Pelajar', Harga = 50000, KuotaHarian = 300 WHERE IDTiket = 2;
+                        UPDATE Tiket SET NamaTiket = 'Anak', Harga = 30000, KuotaHarian = 200 WHERE IDTiket = 3;
+                    ";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
@@ -291,14 +291,16 @@ namespace KebunBinatangADO.Forms
                     }
                 }
 
+                // Bersihkan komponen inputan di Form
                 txtID.Clear();
                 txtTiket.Clear();
                 txtHarga.Clear();
                 numKuota.Value = 0;
 
+                // Refresh DataGridView agar menampilkan nama yang sudah normal kembali
                 LoadData();
 
-                MessageBox.Show("Data di database dan form berhasil direset ke data awal!");
+                MessageBox.Show("Data master berhasil dipulihkan ke kondisi semula!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (SqlException ex)
             {

@@ -38,7 +38,7 @@ namespace KebunBinatangADO.Forms
                     if (result > 0)
                     {
                         MessageBox.Show("Login Berhasil! Selamat datang di Kebun Binatang.");
-                        FormBookingPengunjung bookingForm = new FormBookingPengunjung();
+                        FormBookingPengunjung bookingForm = new FormBookingPengunjung("", DateTime.Today);
                         bookingForm.Show();
                         this.Hide();
                     }

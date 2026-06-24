@@ -30,6 +30,21 @@ namespace KebunBinatangADO.Forms
             numTiketPelajar.ValueChanged += (s, e) => UpdateSisaKuota();
             numTiketAnak.ValueChanged += (s, e) => UpdateSisaKuota();
             dtpBooking.ValueChanged += (s, e) => UpdateSisaKuota();
+
+            txtNoHP.KeyPress += txtNoHP_KeyPress;
+        }
+
+        private void txtNoHP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Memeriksa apakah karakter yang diketik bukan angka, bukan tombol Backspace, dan bukan tombol Delete
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                // Jika bukan angka, batalkan aksi pengetikan (karakter tidak akan muncul di TextBox)
+                e.Handled = true;
+
+                // Opsional: memberi efek suara beep peringatan standar Windows
+                System.Media.SystemSounds.Beep.Play();
+            }
         }
 
         private void FormBookingPengunjung_Load(object sender, EventArgs e)
@@ -290,9 +305,59 @@ namespace KebunBinatangADO.Forms
 
         private void btnCetak_Click(object sender, EventArgs e)
         {
-            ReportBooking frmCetak = new ReportBooking ("Bayar Di Loket", dtpBooking.Value.Date);
-            frmCetak.Show();
-            this.Hide();
+            try
+            {
+                // 1. Validasi data kode booking wajib ada
+                if (string.IsNullOrEmpty(txtKodeBook.Text))
+                {
+                    MessageBox.Show("Belum ada transaksi data booking yang aktif!");
+                    return;
+                }
+
+                // 2. Pastikan koneksi database terbuka
+                if (conn.State == ConnectionState.Closed) conn.Open();
+
+                // 3. Alokasikan memori baru untuk DataTable tingkat class
+                dtbooking = new DataTable();
+
+                // 4. Panggil SP dengan 1 parameter tunggal agar tidak memicu error "Too many arguments"
+                using (SqlCommand cmdUtama = new SqlCommand("sp_ReportRingkasanBooking", conn))
+                {
+                    cmdUtama.CommandType = CommandType.StoredProcedure;
+                    cmdUtama.Parameters.AddWithValue("@inKodeBooking", txtKodeBook.Text);
+
+                    SqlDataAdapter daUtama = new SqlDataAdapter(cmdUtama);
+                    daUtama.Fill(dtbooking);
+                }
+
+                // 5. Buka Form ReportBooking dengan melempar Kode Booking yang aktif
+                ReportBooking frmCetak = new ReportBooking(txtKodeBook.Text);
+                frmCetak.Show();
+                this.Hide();
+            }
+            catch (SqlException ex)
+            {
+                SimpanLog("SQL ERROR CETAK FORM: " + ex.Message);
+                MessageBox.Show("SQL Error saat memproses laporan: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                SimpanLog("GENERAL ERROR CETAK FORM: " + ex.Message);
+                MessageBox.Show("Gagal memproses cetak data: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        private void lblNama_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNama_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

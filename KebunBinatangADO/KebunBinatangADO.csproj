@@ -72,7 +72,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassBookingPengunjung.cs" />
     <Compile Include="ClassLaporanBooking.cs" />
+    <Compile Include="CrystalReportBooking.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReportBooking.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CrystalReportLaporan.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -146,12 +153,22 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportBooking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportBooking.Designer.cs">
+      <DependentUpon>ReportBooking.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportLaporan.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ReportLaporan.Designer.cs">
       <DependentUpon>ReportLaporan.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CrystalReportBooking.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReportBooking.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="CrystalReportLaporan.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReportLaporan.cs</LastGenOutput>
@@ -195,6 +212,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ReportBooking.resx">
+      <DependentUpon>ReportBooking.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportLaporan.resx">
       <DependentUpon>ReportLaporan.cs</DependentUpon>
     </EmbeddedResource>

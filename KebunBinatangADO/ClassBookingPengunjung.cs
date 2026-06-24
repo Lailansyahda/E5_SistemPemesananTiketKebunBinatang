@@ -16,6 +16,6 @@ namespace KebunBinatangADO
 
         public string StatusPembayaran { get; set; }
 
-        public DateTime TanggalKunjungan { get; set; }
+        public string TanggalKunjungan { get; set; }
     }
 }

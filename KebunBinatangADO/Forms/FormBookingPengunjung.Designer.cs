@@ -50,6 +50,7 @@
             this.dtpBooking = new System.Windows.Forms.DateTimePicker();
             this.lblTanggal = new System.Windows.Forms.Label();
             this.grpBoxRingkasan = new System.Windows.Forms.GroupBox();
+            this.btnCetak = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.txtTanggalKunjungan = new System.Windows.Forms.TextBox();
             this.txtStatusPembayaran = new System.Windows.Forms.TextBox();
@@ -76,6 +77,7 @@
             this.lblNama.Size = new System.Drawing.Size(54, 15);
             this.lblNama.TabIndex = 0;
             this.lblNama.Text = "Nama :";
+            this.lblNama.Click += new System.EventHandler(this.lblNama_Click);
             // 
             // lblNoHp
             // 
@@ -101,6 +103,7 @@
             this.txtNama.Name = "txtNama";
             this.txtNama.Size = new System.Drawing.Size(284, 23);
             this.txtNama.TabIndex = 3;
+            this.txtNama.TextChanged += new System.EventHandler(this.txtNama_TextChanged);
             // 
             // txtNoHP
             // 
@@ -270,6 +273,7 @@
             // grpBoxRingkasan
             // 
             this.grpBoxRingkasan.BackColor = System.Drawing.Color.Chocolate;
+            this.grpBoxRingkasan.Controls.Add(this.btnCetak);
             this.grpBoxRingkasan.Controls.Add(this.btnLogout);
             this.grpBoxRingkasan.Controls.Add(this.txtTanggalKunjungan);
             this.grpBoxRingkasan.Controls.Add(this.txtStatusPembayaran);
@@ -290,10 +294,22 @@
             this.grpBoxRingkasan.TabStop = false;
             this.grpBoxRingkasan.Text = "Ringkasan Pemesanan";
             // 
+            // btnCetak
+            // 
+            this.btnCetak.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.btnCetak.ForeColor = System.Drawing.Color.Transparent;
+            this.btnCetak.Location = new System.Drawing.Point(400, 140);
+            this.btnCetak.Name = "btnCetak";
+            this.btnCetak.Size = new System.Drawing.Size(237, 26);
+            this.btnCetak.TabIndex = 11;
+            this.btnCetak.Text = "Cetak Pemesanan";
+            this.btnCetak.UseVisualStyleBackColor = false;
+            this.btnCetak.Click += new System.EventHandler(this.btnCetak_Click);
+            // 
             // btnLogout
             // 
             this.btnLogout.BackColor = System.Drawing.Color.Sienna;
-            this.btnLogout.Location = new System.Drawing.Point(646, 143);
+            this.btnLogout.Location = new System.Drawing.Point(646, 140);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(90, 26);
             this.btnLogout.TabIndex = 10;
@@ -438,5 +454,6 @@
         private System.Windows.Forms.Label lblHargatktDewasa;
         private System.Windows.Forms.Label lblHargatktAnak;
         private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button btnCetak;
     }
 }

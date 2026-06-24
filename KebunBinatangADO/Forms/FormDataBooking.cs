@@ -38,24 +38,55 @@ namespace KebunBinatangADO.Forms
                 using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
-                    string query = "SELECT * FROM vw_DataBooking";
-                    using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
-                    {
-                        dtBooking = new DataTable();
-                        da.Fill(dtBooking);
-                        bookingBindingSource.DataSource = dtBooking;
-                        bindingNavigator1.BindingSource = bookingBindingSource;
-                        dgvDataBooking.DataSource = bookingBindingSource;
 
+                    string query = "SELECT * FROM vw_DataBooking";
+                    if (!string.IsNullOrEmpty(filter))
+                    {
+                        query += " WHERE KodeBooking LIKE @filter OR Nama LIKE @filter";
+                    }
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        if (!string.IsNullOrEmpty(filter))
+                        {
+                            cmd.Parameters.AddWithValue("@filter", "%" + filter + "%");
+                        }
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            dtBooking = new DataTable();
+                            da.Fill(dtBooking);
+
+                            bookingBindingSource.DataSource = dtBooking;
+                            bindingNavigator1.BindingSource = bookingBindingSource;
+                            dgvDataBooking.DataSource = bookingBindingSource;
+                        }
                     }
                 }
+
+                // --- 🔴 BAGIAN UNTUK MENGHILANGKAN/MENYEMBUNYIKAN KOLOM ID YANG GA PENTING ---
+                // Jika kolom-kolom ini terbawa dari tabel asal, kita sembunyikan dari mata user
+                if (dgvDataBooking.Columns.Contains("IDPengunjung")) dgvDataBooking.Columns["IDPengunjung"].Visible = false;
+                if (dgvDataBooking.Columns.Contains("IDAdmin")) dgvDataBooking.Columns["IDAdmin"].Visible = false;
+                if (dgvDataBooking.Columns.Contains("IDTiket")) dgvDataBooking.Columns["IDTiket"].Visible = false;
+
+                // --- 🟢 BAGIAN MERAPIKAN HEADER KOLOM YANG INGIN DITAMPILKAN ---
+                if (dgvDataBooking.Columns.Contains("IDBooking")) dgvDataBooking.Columns["IDBooking"].HeaderText = "ID Booking";
+                if (dgvDataBooking.Columns.Contains("KodeBooking")) dgvDataBooking.Columns["KodeBooking"].HeaderText = "Kode Booking";
+                if (dgvDataBooking.Columns.Contains("Nama")) dgvDataBooking.Columns["Nama"].HeaderText = "Nama Pengunjung";
+                if (dgvDataBooking.Columns.Contains("NoHp")) dgvDataBooking.Columns["NoHp"].HeaderText = "No HP";
+                if (dgvDataBooking.Columns.Contains("Email")) dgvDataBooking.Columns["Email"].HeaderText = "Email";
+                if (dgvDataBooking.Columns.Contains("TanggalKunjungan")) dgvDataBooking.Columns["TanggalKunjungan"].HeaderText = "Tanggal Kunjungan";
+                if (dgvDataBooking.Columns.Contains("DetailTiket")) dgvDataBooking.Columns["DetailTiket"].HeaderText = "Detail Tiket";
+                if (dgvDataBooking.Columns.Contains("TotalHarga")) dgvDataBooking.Columns["TotalHarga"].HeaderText = "Total Harga";
+                if (dgvDataBooking.Columns.Contains("StatusPembayaran")) dgvDataBooking.Columns["StatusPembayaran"].HeaderText = "Status Pembayaran";
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Gagal load data: " + ex.Message);
             }
         }
-
 
         private void btnTampil_Click(object sender, EventArgs e)
         {

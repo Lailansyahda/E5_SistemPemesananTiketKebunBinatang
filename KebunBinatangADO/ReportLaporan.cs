@@ -45,7 +45,7 @@ namespace KebunBinatangADO
 
                             rpt.IDBooking = row["IDBooking"].ToString();
                            
-                            rpt.TanggalKunjungan = Convert.ToDateTime(row["Tanggal"]);
+                            rpt.TanggalKunjungan = Convert.ToDateTime(row["Tanggal"]).ToShortDateString();
                             rpt.TotalHarga = row["TotalTransaksi"].ToString();
                            
 

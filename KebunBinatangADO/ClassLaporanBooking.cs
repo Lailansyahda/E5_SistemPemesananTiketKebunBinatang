@@ -10,7 +10,7 @@ namespace KebunBinatangADO
     {
         public string IDBooking { get; set; }
 
-        public DateTime TanggalKunjungan { get; set; }
+        public string TanggalKunjungan { get; set; }
 
         public string TotalHarga { get; set; }
 
