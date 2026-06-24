@@ -13,10 +13,16 @@ namespace KebunBinatangADO.Forms
         SqlDataAdapter da;
         DataTable dtbooking = new DataTable();
 
-        public FormLaporan()
+        ClassLaporanBooking classLaporan = new ClassLaporanBooking();
+
+        public DateTime tglKunjungan { get; set; }
+
+
+        public FormLaporan(DateTime tglKunjungan)
         {
             InitializeComponent();
             conn = new SqlConnection(connString);
+            this.tglKunjungan = tglKunjungan; 
         }
 
         private void SimpanLog(string pesan)
