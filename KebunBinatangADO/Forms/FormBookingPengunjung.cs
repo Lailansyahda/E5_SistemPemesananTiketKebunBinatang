@@ -145,7 +145,6 @@ namespace KebunBinatangADO.Forms
             int pelajar = (int)numTiketPelajar.Value;
             int anak = (int)numTiketAnak.Value;
 
-            
             int total = (dewasa * 70000) + (pelajar * 50000) + (anak * 30000);
 
             if (total == 0)
@@ -157,49 +156,84 @@ namespace KebunBinatangADO.Forms
             string detail = $"{dewasa} Dewasa, {pelajar} Pelajar, {anak} Anak";
             string kode = "ZOO-" + DateTime.Now.ToString("yyyyMMddHHmmss");
 
+            // Buka koneksi terlebih dahulu sebelum memulai transaksi (Sesuai Modul)
+            conn.Open();
+
+            // Inisialisasi variabel transaksi di luar blok try-catch seperti contoh praktikum
+            SqlTransaction trans = null;
+
             try
             {
-                conn.Open();
-                
+                // Memulai transaksi database
+                trans = conn.BeginTransaction();
+
                 string query = @"INSERT INTO Booking (KodeBooking, Nama, NoHP, Email, TanggalKunjungan, 
-                               TiketDewasa, TiketPelajar, TiketAnak, TotalHarga, StatusPembayaran, DetailTiket, IDPengunjung, IDAdmin, IDTiket) 
-                               VALUES (@kode, @nama, @hp, @email, @tgl, @dewasa, @pelajar, @anak, @total, 'Bayar Di Loket', @detail, 1, 1, 1)";
+                       TiketDewasa, TiketPelajar, TiketAnak, TotalHarga, StatusPembayaran, DetailTiket, IDPengunjung, IDAdmin, IDTiket) 
+                       VALUES (@kode, @nama, @hp, @email, @tgl, @dewasa, @pelajar, @anak, @total, 'Bayar Di Loket', @detail, 1, 1, 1)";
 
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@kode", kode);
-                    cmd.Parameters.AddWithValue("@nama", txtNama.Text);
-                    cmd.Parameters.AddWithValue("@hp", txtNoHP.Text);
-                    cmd.Parameters.AddWithValue("@email", txtEmail.Text);
-                    cmd.Parameters.AddWithValue("@tgl", dtpBooking.Value.Date);
-                    cmd.Parameters.AddWithValue("@dewasa", dewasa);
-                    cmd.Parameters.AddWithValue("@pelajar", pelajar);
-                    cmd.Parameters.AddWithValue("@anak", anak);
-                    cmd.Parameters.AddWithValue("@total", total);
-                    cmd.Parameters.AddWithValue("@detail", detail);
+                // Sertakan objek 'trans' ke dalam konstruktor SqlCommand (Sesuai Modul)
+                SqlCommand cmd = new SqlCommand(query, conn, trans);
 
-                    cmd.ExecuteNonQuery();
+                cmd.Parameters.AddWithValue("@kode", kode);
+                cmd.Parameters.AddWithValue("@nama", txtNama.Text);
+                cmd.Parameters.AddWithValue("@hp", txtNoHP.Text);
+                cmd.Parameters.AddWithValue("@email", txtEmail.Text);
+                cmd.Parameters.AddWithValue("@tgl", dtpBooking.Value.Date);
+                cmd.Parameters.AddWithValue("@dewasa", dewasa);
+                cmd.Parameters.AddWithValue("@pelajar", pelajar);
+                cmd.Parameters.AddWithValue("@anak", anak);
+                cmd.Parameters.AddWithValue("@total", total);
+                cmd.Parameters.AddWithValue("@detail", detail);
 
-                    
-                    txtKodeBook.Text = kode;
-                    txtStatusPembayaran.Text = "Bayar Di Loket";
-                    txtTanggalKunjungan.Text = dtpBooking.Value.ToShortDateString();
-                    txtDetailTiket.Text = detail;
-                    txtTotalHarga.Text = "Rp. " + total.ToString("N0");
+                cmd.ExecuteNonQuery();
 
-                    MessageBox.Show("Booking Berhasil Tersimpan!");
+                // Integrasi Pencatatan Log Aktivitas sukses ke database sebelum Commit (Sesuai Modul)
+                SqlCommand cmdLog = new SqlCommand(
+                    "INSERT INTO LogAktivitas (aktivitas, waktu) VALUES (@aktivitas, GETDATE())",
+                    conn,
+                    trans
+                );
+                cmdLog.Parameters.AddWithValue("@aktivitas", "INSERT BOOKING SUKSES : " + kode);
+                cmdLog.ExecuteNonQuery();
 
-                    
-                    btnPesan.Enabled = false;
-                    UpdateSisaKuota();
-                    LockForm();
-                }
+                // Jika semua eksekusi SQL di atas berhasil tanpa error, lakukan Commit
+                trans.Commit();
+
+                // Perubahan UI dan Notifikasi diletakkan setelah Commit sukses dilakukan
+                txtKodeBook.Text = kode;
+                txtStatusPembayaran.Text = "Bayar Di Loket";
+                txtTanggalKunjungan.Text = dtpBooking.Value.ToShortDateString();
+                txtDetailTiket.Text = detail;
+                txtTotalHarga.Text = "Rp. " + total.ToString("N0");
+
+                MessageBox.Show("Booking Berhasil Tersimpan!");
+
+                btnPesan.Enabled = false;
+                UpdateSisaKuota();
+                LockForm();
+            }
+            catch (SqlException ex)
+            {
+                // Jika terjadi kesalahan SQL, batalkan seluruh rangkaian perintah (Rollback)
+                if (trans != null) trans.Rollback();
+
+                // Pencatatan log kegagalan eksekusi ke file/sistem log (Sesuai Modul)
+                SimpanLog("ROLLBACK INSERT BOOKING : " + ex.Message);
+                MessageBox.Show("Gagal menyimpan data (SQL Error): " + ex.Message);
             }
             catch (Exception ex)
             {
+                // Antisipasi kesalahan umum non-SQL, lakukan rollback juga
+                if (trans != null) trans.Rollback();
+
+                SimpanLog("GENERAL ERROR BOOKING : " + ex.Message);
                 MessageBox.Show("Gagal menyimpan data: " + ex.Message);
             }
-            finally { conn.Close(); }
+            finally
+            {
+                // Memastikan koneksi database ditutup kembali pada kondisi apa pun
+                conn.Close();
+            }
         }
 
         private void LockForm()
@@ -225,6 +259,25 @@ namespace KebunBinatangADO.Forms
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void grpBoxDataTiket_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SimpanLog(string pesan)
+        {
+            using (SqlConnection connection = new SqlConnection(connString))
+            {
+                string query = @"INSERT INTO LogError VALUES (GETDATE(), @pesan)";
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@pesan", pesan);
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
     }
 }
