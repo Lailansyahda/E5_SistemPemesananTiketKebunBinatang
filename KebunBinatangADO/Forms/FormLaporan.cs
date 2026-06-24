@@ -10,38 +10,61 @@ namespace KebunBinatangADO.Forms
         string connString = "Data Source=LAPTOP-2V9KUAS1\\LAILANSYAHDA; Initial Catalog=DBKebunBinatangADO; Integrated Security=True";
         SqlConnection conn;
 
+        SqlDataAdapter da;
+        DataTable dtbooking = new DataTable();
+
         public FormLaporan()
         {
             InitializeComponent();
             conn = new SqlConnection(connString);
         }
 
+        private void SimpanLog(string pesan)
+        {
+            using (SqlConnection connection = new SqlConnection(connString))
+            {
+                string query = @"INSERT INTO LogError VALUES (GETDATE(), @pesan)";
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@pesan", pesan);
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         private void btnTampilLaporan_Click(object sender, EventArgs e)
         {
             try
             {
-                conn.Open();
-               
-                string query = "SELECT * FROM Booking WHERE CONVERT(DATE, TanggalKunjungan) = @tgl";
+                if (conn.State == ConnectionState.Closed) conn.Open();
+
+                string query = "SELECT * FROM vw_Laporan WHERE CONVERT(DATE, Tanggal) = @tgl";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@tgl", dtpLaporan.Value.Date);
 
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    dgvLaporan.DataSource = dt;
+                    da = new SqlDataAdapter(cmd);
 
-                    laporanBindingSource.DataSource = dt;
+                    dtbooking.Clear();
+
+                    da.Fill(dtbooking);
+
+                    laporanBindingSource.DataSource = dtbooking;
                     bindingNavigator1.BindingSource = laporanBindingSource;
                     dgvLaporan.DataSource = laporanBindingSource;
-
                 }
+            }
+            catch (SqlException ex)
+            {
+                SimpanLog(ex.Message);
+                MessageBox.Show("SQL Error: " + ex.Message);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Gagal memuat laporan: " + ex.Message);
+                SimpanLog(ex.Message);
+                MessageBox.Show("General Error: " + ex.Message);
             }
             finally
             {
@@ -56,9 +79,6 @@ namespace KebunBinatangADO.Forms
 
         private void FormLaporan_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'dBKebunBinatangADODataSet.Laporan' table. You can move, or remove it, as needed.
-            // this.laporanTableAdapter.Fill(this.dBKebunBinatangADODataSet.Laporan);
-
         }
     }
 }

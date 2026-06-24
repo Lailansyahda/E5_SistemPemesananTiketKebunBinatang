@@ -36,32 +36,32 @@
             this.dtpLaporan = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
             this.dgvLaporan = new System.Windows.Forms.DataGridView();
-            this.btnBack = new System.Windows.Forms.Button();
-            this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.dBKebunBinatangADODataSet = new KebunBinatangADO.DBKebunBinatangADODataSet();
-            this.laporanBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.laporanTableAdapter = new KebunBinatangADO.DBKebunBinatangADODataSetTableAdapters.LaporanTableAdapter();
             this.iDLaporanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iDBookingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tanggalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalTransaksiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.laporanBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dBKebunBinatangADODataSet = new KebunBinatangADO.DBKebunBinatangADODataSet();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
+            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.laporanTableAdapter = new KebunBinatangADO.DBKebunBinatangADODataSetTableAdapters.LaporanTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLaporan)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.laporanBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBKebunBinatangADODataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dBKebunBinatangADODataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.laporanBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -130,11 +130,49 @@
             this.tanggalDataGridViewTextBoxColumn,
             this.totalTransaksiDataGridViewTextBoxColumn});
             this.dgvLaporan.DataSource = this.laporanBindingSource;
-            this.dgvLaporan.Location = new System.Drawing.Point(125, 200);
+            this.dgvLaporan.Location = new System.Drawing.Point(188, 183);
             this.dgvLaporan.Name = "dgvLaporan";
             this.dgvLaporan.ReadOnly = true;
-            this.dgvLaporan.Size = new System.Drawing.Size(562, 150);
+            this.dgvLaporan.Size = new System.Drawing.Size(441, 150);
             this.dgvLaporan.TabIndex = 20;
+            // 
+            // iDLaporanDataGridViewTextBoxColumn
+            // 
+            this.iDLaporanDataGridViewTextBoxColumn.DataPropertyName = "IDLaporan";
+            this.iDLaporanDataGridViewTextBoxColumn.HeaderText = "IDLaporan";
+            this.iDLaporanDataGridViewTextBoxColumn.Name = "iDLaporanDataGridViewTextBoxColumn";
+            this.iDLaporanDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // iDBookingDataGridViewTextBoxColumn
+            // 
+            this.iDBookingDataGridViewTextBoxColumn.DataPropertyName = "IDBooking";
+            this.iDBookingDataGridViewTextBoxColumn.HeaderText = "IDBooking";
+            this.iDBookingDataGridViewTextBoxColumn.Name = "iDBookingDataGridViewTextBoxColumn";
+            this.iDBookingDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // tanggalDataGridViewTextBoxColumn
+            // 
+            this.tanggalDataGridViewTextBoxColumn.DataPropertyName = "Tanggal";
+            this.tanggalDataGridViewTextBoxColumn.HeaderText = "Tanggal";
+            this.tanggalDataGridViewTextBoxColumn.Name = "tanggalDataGridViewTextBoxColumn";
+            this.tanggalDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // totalTransaksiDataGridViewTextBoxColumn
+            // 
+            this.totalTransaksiDataGridViewTextBoxColumn.DataPropertyName = "TotalTransaksi";
+            this.totalTransaksiDataGridViewTextBoxColumn.HeaderText = "TotalTransaksi";
+            this.totalTransaksiDataGridViewTextBoxColumn.Name = "totalTransaksiDataGridViewTextBoxColumn";
+            this.totalTransaksiDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // laporanBindingSource
+            // 
+            this.laporanBindingSource.DataMember = "Laporan";
+            this.laporanBindingSource.DataSource = this.dBKebunBinatangADODataSet;
+            // 
+            // dBKebunBinatangADODataSet
+            // 
+            this.dBKebunBinatangADODataSet.DataSetName = "DBKebunBinatangADODataSet";
+            this.dBKebunBinatangADODataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // btnBack
             // 
@@ -178,6 +216,31 @@
             this.bindingNavigator1.TabIndex = 22;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorAddNewItem.Text = "Add new";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorDeleteItem.Text = "Delete";
+            // 
             // bindingNavigatorMoveFirstItem
             // 
             this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -211,16 +274,9 @@
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Current position";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // bindingNavigatorMoveNextItem
@@ -243,68 +299,12 @@
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
-            // 
-            // dBKebunBinatangADODataSet
-            // 
-            this.dBKebunBinatangADODataSet.DataSetName = "DBKebunBinatangADODataSet";
-            this.dBKebunBinatangADODataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // laporanBindingSource
-            // 
-            this.laporanBindingSource.DataMember = "Laporan";
-            this.laporanBindingSource.DataSource = this.dBKebunBinatangADODataSet;
             // 
             // laporanTableAdapter
             // 
             this.laporanTableAdapter.ClearBeforeFill = true;
-            // 
-            // iDLaporanDataGridViewTextBoxColumn
-            // 
-            this.iDLaporanDataGridViewTextBoxColumn.DataPropertyName = "IDLaporan";
-            this.iDLaporanDataGridViewTextBoxColumn.HeaderText = "IDLaporan";
-            this.iDLaporanDataGridViewTextBoxColumn.Name = "iDLaporanDataGridViewTextBoxColumn";
-            this.iDLaporanDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // iDBookingDataGridViewTextBoxColumn
-            // 
-            this.iDBookingDataGridViewTextBoxColumn.DataPropertyName = "IDBooking";
-            this.iDBookingDataGridViewTextBoxColumn.HeaderText = "IDBooking";
-            this.iDBookingDataGridViewTextBoxColumn.Name = "iDBookingDataGridViewTextBoxColumn";
-            this.iDBookingDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // tanggalDataGridViewTextBoxColumn
-            // 
-            this.tanggalDataGridViewTextBoxColumn.DataPropertyName = "Tanggal";
-            this.tanggalDataGridViewTextBoxColumn.HeaderText = "Tanggal";
-            this.tanggalDataGridViewTextBoxColumn.Name = "tanggalDataGridViewTextBoxColumn";
-            this.tanggalDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // totalTransaksiDataGridViewTextBoxColumn
-            // 
-            this.totalTransaksiDataGridViewTextBoxColumn.DataPropertyName = "TotalTransaksi";
-            this.totalTransaksiDataGridViewTextBoxColumn.HeaderText = "TotalTransaksi";
-            this.totalTransaksiDataGridViewTextBoxColumn.Name = "totalTransaksiDataGridViewTextBoxColumn";
-            this.totalTransaksiDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // FormLaporan
             // 
@@ -325,11 +325,11 @@
             this.Load += new System.EventHandler(this.FormLaporan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLaporan)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.laporanBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBKebunBinatangADODataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dBKebunBinatangADODataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.laporanBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

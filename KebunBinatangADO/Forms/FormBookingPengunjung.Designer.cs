@@ -147,6 +147,7 @@
             this.grpBoxDataTiket.TabIndex = 1;
             this.grpBoxDataTiket.TabStop = false;
             this.grpBoxDataTiket.Text = "Data Tiket";
+            this.grpBoxDataTiket.Enter += new System.EventHandler(this.grpBoxDataTiket_Enter);
             // 
             // lblHargatktAnak
             // 
