@@ -101,6 +101,8 @@ namespace KebunBinatangADO.Forms
             dtpLaporan.MinDate = new DateTime(2000, 1, 1);
             dtpLaporan.MaxDate = DateTime.Now;
 
+            dtpLaporan.Value = this.tglKunjungan;
+
             try
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
