@@ -79,6 +79,46 @@ namespace KebunBinatangADO.Forms
 
         private void FormLaporan_Load(object sender, EventArgs e)
         {
+            dtpLaporan.Format = DateTimePickerFormat.Custom;
+            dtpLaporan.CustomFormat = "yyyy-MM-dd";
+            dtpLaporan.ShowUpDown = false;
+            dtpLaporan.MinDate = new DateTime(2000, 1, 1);
+            dtpLaporan.MaxDate = DateTime.Now;
+
+            try
+            {
+                if (conn.State == ConnectionState.Closed) conn.Open();
+
+                string query = "SELECT TOP 100 * FROM vw_Laporan ORDER BY Tanggal DESC";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.CommandType = CommandType.Text;
+
+                    da = new SqlDataAdapter(cmd);
+
+                    dtbooking.Clear();
+                    da.Fill(dtbooking);
+
+                    laporanBindingSource.DataSource = dtbooking;
+                    bindingNavigator1.BindingSource = laporanBindingSource;
+                    dgvLaporan.DataSource = laporanBindingSource;
+                }
+            }
+            catch (SqlException ex)
+            {
+                SimpanLog(ex.Message);
+                MessageBox.Show("Gagal load data: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                SimpanLog(ex.Message);
+                MessageBox.Show("Gagal load data umum: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }
