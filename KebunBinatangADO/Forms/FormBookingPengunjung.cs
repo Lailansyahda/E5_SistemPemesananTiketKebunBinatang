@@ -18,9 +18,9 @@ namespace KebunBinatangADO.Forms
         ClassBookingPengunjung ClassBookingPengunjung = new ClassBookingPengunjung();
 
         string Status { get; set; }
-        int Tahun { get; set; }
+        DateTime Tanggal { get; set; }
 
-        public FormBookingPengunjung()
+        public FormBookingPengunjung(string Status, DateTime Tanggal)
         {
             InitializeComponent();
             conn = new SqlConnection(connString);
@@ -290,7 +290,9 @@ namespace KebunBinatangADO.Forms
 
         private void btnCetak_Click(object sender, EventArgs e)
         {
-
+            ReportBooking frmCetak = new ReportBooking ("Bayar Di Loket", dtpBooking.Value.Date);
+            frmCetak.Show();
+            this.Hide();
         }
     }
 }
