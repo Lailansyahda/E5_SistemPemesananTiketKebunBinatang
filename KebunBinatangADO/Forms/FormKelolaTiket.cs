@@ -92,33 +92,62 @@ namespace KebunBinatangADO.Forms
         {
             if (!IsValidInput()) return;
 
+            // Pastikan koneksi menggunakan string koneksi yang tepat
+            // (di sini menggunakan objek 'conn' yang sudah kamu definisikan sebelumnya)
+            conn.Open();
+
+            // Inisialisasi SqlTransaction di luar blok try-catch seperti di modul
+            SqlTransaction trans = null;
+
             try
             {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand("sp_InsertTiket", conn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@NamaTiket", txtTiket.Text);
-                    cmd.Parameters.AddWithValue("@Harga", txtHarga.Text);
-                    cmd.Parameters.AddWithValue("@KuotaHarian", numKuota.Value);
+                // Memulai transaksi database
+                trans = conn.BeginTransaction();
 
-                    cmd.ExecuteNonQuery();
-                }
+                // Eksekusi Stored Procedure sp_InsertTiket dengan menyertakan objek trans
+                SqlCommand cmd = new SqlCommand("sp_InsertTiket", conn, trans);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@NamaTiket", txtTiket.Text);
+                cmd.Parameters.AddWithValue("@Harga", txtHarga.Text);
+                cmd.Parameters.AddWithValue("@KuotaHarian", numKuota.Value);
+
+                cmd.ExecuteNonQuery();
+
+                // Struktur pencatatan log aktivitas sukses ke database sebelum Commit (Sesuai Modul)
+                // Catatan: Pastikan tabel 'LogAktivitas' atau sejenisnya ada di databasemu.
+                SqlCommand cmdLog = new SqlCommand(
+                    "INSERT INTO LogAktivitas (aktivitas, waktu) VALUES (@aktivitas, GETDATE())",
+                    conn,
+                    trans
+                );
+                cmdLog.Parameters.AddWithValue("@aktivitas", "INSERT TIKET : " + txtTiket.Text);
+                cmdLog.ExecuteNonQuery();
+
+                // Jika semua perintah sukses, lakukan Commit untuk menyimpan perubahan secara permanen
+                trans.Commit();
+
                 MessageBox.Show("Tiket berhasil ditambah!");
                 LoadData();
             }
             catch (SqlException ex)
             {
-                SimpanLog(ex.Message);
+                // Jika terjadi kesalahan SQL, batalkan semua transaksi kembali ke titik awal
+                if (trans != null) trans.Rollback();
+
+                SimpanLog("ROLLBACK INSERT : " + ex.Message);
                 MessageBox.Show("SQL Error: " + ex.Message);
             }
             catch (Exception ex)
             {
-                SimpanLog(ex.Message);
+                // Jika terjadi kesalahan umum, lakukan rollback juga
+                if (trans != null) trans.Rollback();
+
+                SimpanLog("GENERAL ERROR : " + ex.Message);
                 MessageBox.Show("General Error: " + ex.Message);
             }
             finally
             {
+                // Memastikan koneksi database selalu ditutup kembali
                 conn.Close();
             }
         }
