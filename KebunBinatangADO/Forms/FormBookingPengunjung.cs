@@ -15,6 +15,11 @@ namespace KebunBinatangADO.Forms
         DataTable dtbooking = new DataTable();
         DataTable dtringkasan = new DataTable();
 
+        ClassBookingPengunjung ClassBookingPengunjung = new ClassBookingPengunjung();
+
+        string Status { get; set; }
+        int Tahun { get; set; }
+
         public FormBookingPengunjung()
         {
             InitializeComponent();
@@ -281,6 +286,11 @@ namespace KebunBinatangADO.Forms
                     cmd.ExecuteNonQuery();
                 }
             }
+        }
+
+        private void btnCetak_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
