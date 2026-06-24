@@ -54,6 +54,16 @@ namespace KebunBinatangADO.Forms
                     laporanBindingSource.DataSource = dtbooking;
                     bindingNavigator1.BindingSource = laporanBindingSource;
                     dgvLaporan.DataSource = laporanBindingSource;
+
+                    if (dtbooking.Rows.Count > 0)
+                    {
+                        btnCetak.Enabled = true;
+                    }
+                    else
+                    {
+                        btnCetak.Enabled = false;
+                        MessageBox.Show("Data tidak ditemukan");
+                    }
                 }
             }
             catch (SqlException ex)
@@ -119,6 +129,11 @@ namespace KebunBinatangADO.Forms
             {
                 conn.Close();
             }
+        }
+
+        private void btnCetak_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
