@@ -9,7 +9,7 @@ namespace KebunBinatangADO
 {
     public partial class ReportLaporan : Form
     {
-        string connString = "Data Source=LAPTOP-2V9KUAS1\\LAILANSYAHDA; Initial Catalog=DBKebunBinatangADO; Integrated Security=True";
+        string connString = "Data Source=10.69.0.116\\LAILANSYAHDA;Initial Catalog=DBKebunBinatangADO;User ID=sa;Password=Syahda123";
         List<ClassLaporanBooking> listLaporan = new List<ClassLaporanBooking>();
 
         public ReportLaporan()

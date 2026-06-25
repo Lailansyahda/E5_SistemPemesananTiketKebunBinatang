@@ -8,7 +8,7 @@ namespace KebunBinatangADO.Forms
 {
     public partial class FormKelolaTiket : Form
     {
-        string connString = "Data Source=LAPTOP-2V9KUAS1\\LAILANSYAHDA; Initial Catalog=DBKebunBinatangADO; Integrated Security=True";
+        string connString = "Data Source=10.69.0.116\\LAILANSYAHDA;Initial Catalog=DBKebunBinatangADO;User ID=sa;Password=Syahda123";
         SqlConnection conn;
 
         public FormKelolaTiket()
